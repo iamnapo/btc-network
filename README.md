@@ -24,7 +24,7 @@ Note these samples use `curl` to exercise the API, but this would usually be `bi
 
 ```bash
 # check block count
-curl -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' -u btc:btc host.docker.internal:18443
+curl -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' -u btc:btc localhost:18403
 
 # check peers
 curl -d '{"jsonrpc":"2.0","id":"1","method":"getpeerinfo"}' -u btc:btc localhost:18403
