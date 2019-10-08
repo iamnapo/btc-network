@@ -1,6 +1,4 @@
-# Bitcoin regtest network with multiple nodes, using docker
-
-![DockerHub](https://img.shields.io/microbadger/image-size/iamnapo/btc-network/latest?logo=docker&logoColor=white&style=for-the-badge&label=)
+# Bitcoin regtest network with multiple nodes, using docker [![dockerhub](https://img.shields.io/microbadger/image-size/iamnapo/btc-network/latest?logo=docker&logoColor=white&style=for-the-badge&label=)](https://cloud.docker.com/repository/docker/iamnapo/btc-network)
 
 ## Usage
 
