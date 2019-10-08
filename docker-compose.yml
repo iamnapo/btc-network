@@ -1,7 +1,7 @@
 version: '3'
 services:
   node1:
-    build: .
+    image: iamnapo/btc-network:0.2.2
     ports:
       - '18401:18443'
       - '18501:18444'
@@ -12,11 +12,12 @@ services:
       - '-addnode=node2:18444'
       - '-addnode=node3:18444'
       - '-addnode=node4:18444'
+      - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node1'
     volumes:
       - './data/node1:/root/node1'
   node2:
-    build: .
+    image: iamnapo/btc-network:0.2.2
     ports:
       - '18402:18443'
       - '18502:18444'
@@ -27,11 +28,12 @@ services:
       - '-addnode=node1:18444'
       - '-addnode=node3:18444'
       - '-addnode=node4:18444'
+      - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node2'
     volumes:
       - './data/node2:/root/node2'
   node3:
-    build: .
+    image: iamnapo/btc-network:0.2.2
     ports:
       - '18403:18443'
       - '18503:18444'
@@ -42,11 +44,12 @@ services:
       - '-addnode=node1:18444'
       - '-addnode=node2:18444'
       - '-addnode=node4:18444'
+      - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node3'
     volumes:
       - './data/node3:/root/node3'
   node4:
-    build: .
+    image: iamnapo/btc-network:0.2.2
     ports:
       - '18404:18443'
       - '18504:18444'
@@ -57,6 +60,7 @@ services:
       - '-addnode=node1:18444'
       - '-addnode=node2:18444'
       - '-addnode=node3:18444'
+      - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node4'
     volumes:
       - './data/node4:/root/node4'

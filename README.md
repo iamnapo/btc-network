@@ -1,5 +1,7 @@
 # Bitcoin regtest network with multiple nodes, using docker
 
+![DockerHub](https://img.shields.io/microbadger/image-size/iamnapo/btc-network/latest?logo=docker&logoColor=white&style=for-the-badge&label=)
+
 ## Usage
 
 Simply run `docker-compose up -d` to start all the containers. This will start the bitcoin nodes,
@@ -14,6 +16,8 @@ Simply run `docker-compose up -d` to start all the containers. This will start t
 
 \* Port as exposed on the host running docker.
 
+All nodes with also try to connect to a 5th node running natively on the host.
+
 ## Samples
 
 Note these samples use `curl` to exercise the API, but this would usually be `bitcoin-cli`. We're using `curl` so we don't have a dependency on bitcoin in the host.
@@ -22,7 +26,7 @@ Note these samples use `curl` to exercise the API, but this would usually be `bi
 
 ```bash
 # check block count
-curl -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' -u btc:btc localhost:18403
+curl -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' -u btc:btc host.docker.internal:18443
 
 # check peers
 curl -d '{"jsonrpc":"2.0","id":"1","method":"getpeerinfo"}' -u btc:btc localhost:18403
@@ -31,7 +35,7 @@ curl -d '{"jsonrpc":"2.0","id":"1","method":"getpeerinfo"}' -u btc:btc localhost
 curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getnewaddress"}' localhost:18403
 
 # mine the blocks
-curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"generatetoaddress", "params":[101,"2MvNDJ1e6m5GVq4VXiERaC6F1fiEPVhQjta"]}' localhost:18403
+curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"generatetoaddress", "params":[101,"2N7HPAz4Je6PpwmRupeiqoC2fZx8WaMrq3g"]}' localhost:18403
 
 # check on node1
 curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' localhost:18401
