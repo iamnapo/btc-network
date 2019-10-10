@@ -1,6 +1,6 @@
 {
-  "name": "btc-network",
-  "version": "0.1.0",
+  "name": "@iamnapo/btc-network",
+  "version": "0.0.0",
   "description": "Tiny module that creates a btc network using docker images",
   "homepage": "https://github.com/iamnapo/btc-network#readme",
   "bugs": {
@@ -13,12 +13,16 @@
     "email": "Napoleonoikon@gmail.com",
     "url": "https://iamnapo.me"
   },
-  "main": "index.js",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "main": "./bin/btc-network.js",
   "bin": {
     "btc-network": "./bin/btc-network.js"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node ./bin/btc-network.js",
     "test": "eslint ."
   },
   "husky": {
@@ -27,8 +31,14 @@
     }
   },
   "dependencies": {
+    "chalk": "^2.4.2",
+    "gradient-string": "^1.2.0",
+    "inquirer": "^7.0.0",
     "js-yaml": "^3.13.1",
-    "make-dir": "^3.0.0"
+    "make-dir": "^3.0.0",
+    "meow": "^5.0.0",
+    "ora": "^4.0.2",
+    "update-notifier": "^3.0.1"
   },
   "devDependencies": {
     "eslint": "^6.5.1",
