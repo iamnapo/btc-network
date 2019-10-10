@@ -7,16 +7,14 @@
 ## Install
 
 ```sh
-$ npm i -g iamnapo/btc-network
+$ npm i -g @iamnapo/btc-network
 ```
 
 ## Usage
 
 __**WARNING:**__ The input file must follow the structure of [`nodes.example.json`](./nodes.example.json).
 
-```bash
-$ btc-network --help
-```
+![Usage](./usage.gif)
 
 ## License
 
