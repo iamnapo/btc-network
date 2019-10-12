@@ -4,7 +4,7 @@ const { existsSync } = require("fs");
 
 module.exports = async () => {
   const usagePrompt = {
-    choices: ["Create required docker-compose files", "Run pre-existing ones"],
+    choices: ["Create required docker-compose files", "Run pre-existing node"],
     message: "💭\u{200D} What would you like to do?",
     name: "usage",
     type: "list",
@@ -40,7 +40,7 @@ module.exports = async () => {
     name: "run",
     default: 1,
     type: "number",
-    filter: (inpt) => inpt.toString(),
+    validate: (inpt) => ((inpt !== parseInt(inpt, 10) || inpt < 1) ? "This must be a positive integer!" : true),
   };
 
   const { usage } = await inquirer.prompt(usagePrompt);
