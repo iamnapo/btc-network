@@ -18,6 +18,14 @@ module.exports = async () => {
     validate: (inpt) => (existsSync(inpt) ? true : `\`${inpt}\` does not exist!`),
   };
 
+  const dockerImageQuestion = {
+    filter: (answer) => answer.trim(),
+    message: chalk.green("🗂️\u{200D} What image would you like to use?"),
+    name: "output",
+    default: "iamnapo/btc-network:latest",
+    type: "input",
+  };
+
   const outputFolderCreateQuestion = {
     filter: (answer) => answer.trim(),
     message: chalk.green("🐳\u{200D} Where to put docker-compose files?"),
@@ -45,7 +53,7 @@ module.exports = async () => {
 
   const { usage } = await inquirer.prompt(usagePrompt);
   if (usage === "Create required docker-compose files") {
-    const answers = await inquirer.prompt([inputFileQuestion, outputFolderCreateQuestion]);
+    const answers = await inquirer.prompt([inputFileQuestion, dockerImageQuestion, outputFolderCreateQuestion]);
     return answers;
   }
   const answers = await inquirer.prompt([outputFolderFindQuestion, nodeIdQuestion]);

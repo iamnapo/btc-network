@@ -9,7 +9,7 @@ const yaml = require("js-yaml");
 const execa = require("execa");
 const { ip } = require("address");
 
-module.exports = async ({ input, output, run }) => {
+module.exports = async ({ input, output, run, image }) => {
   if (!run) {
     const spinner = ora().start("Starting creating files!");
     const filePath = input;
@@ -24,7 +24,7 @@ module.exports = async ({ input, output, run }) => {
         version: "3",
         services: {
           "btc-node": {
-            image: "iamnapo/btc-network:latest",
+            image,
             ports: [
               `${node.p2p_port}:18444`,
               ...(node.rpc_port ? [`${node.rpc_port}:18443`] : []),

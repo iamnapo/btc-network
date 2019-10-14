@@ -12,8 +12,9 @@ module.exports = async () => {
 
   Options
     --input, -i    Input file containing node info
-    --output, -o   Folder to output created docker-compose files
+    --output, -o   Folder to output created docker-compose files (Default: "compose_files")
     --run, -r      Start the docker container of a specific node
+    --image, -e    The image to use for creating the node (Default: "iamnapo/btc-network:latest")
 
   Non-Interactive Example
     $ btc-network -i nodes.json -o out_files
@@ -21,6 +22,7 @@ module.exports = async () => {
       flags: {
         input: { alias: "i", type: "string" },
         output: { alias: "o", type: "string", default: "compose_files" },
+        image: { alias: "e", type: "string", default: "iamnapo/btc-network:latest" },
         run: { alias: "r", type: "string" },
       },
     },
