@@ -1,3 +1,6 @@
 {
-	"extends": "iamnapo"
+  "extends": "iamnapo",
+  "rules": {
+    "no-bitwise": "off"
+  }
 }

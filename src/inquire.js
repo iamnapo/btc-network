@@ -20,7 +20,7 @@ module.exports = async () => {
 
   const dockerImageQuestion = {
     filter: (answer) => answer.trim(),
-    message: chalk.green("🗂️\u{200D} What image would you like to use?"),
+    message: chalk.green("🗂️\u{200D}  What image would you like to use?"),
     name: "output",
     default: "iamnapo/btc-network:latest",
     type: "input",

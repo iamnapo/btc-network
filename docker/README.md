@@ -3,14 +3,14 @@
 ## Usage
 
 Simply run `docker-compose up -d` to start all the containers. This will start the bitcoin nodes,
- and expose RPC on all of them. The nodes will run on the following ports:
+and expose RPC on all of them. The nodes will run on the following ports:
 
-| Node | P2P port * | RPC port * | RPC Username | RPC Password |
-| --- | --- | --- | --- | ---|
-| node1 | 18501 | 18401 | btc | btc |
-| node2 | 18502 | 18402 | btc | btc |
-| node3 | 18503 | 18403 | btc | btc |
-| node4 | 18504 | 18404 | btc | btc |
+| Node  | P2P port \* | RPC port \* | RPC Username | RPC Password |
+| ----- | ----------- | ----------- | ------------ | ------------ |
+| node1 | 18501       | 18401       | btc          | btc          |
+| node2 | 18502       | 18402       | btc          | btc          |
+| node3 | 18503       | 18403       | btc          | btc          |
+| node4 | 18504       | 18404       | btc          | btc          |
 
 \* Port as exposed on the host running docker.
 

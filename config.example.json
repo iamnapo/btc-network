@@ -1,0 +1,5 @@
+{
+  "chainparamsCPP": {
+    "nMinimumChainWork": "uint256S(\"0x000\")"
+  }
+}

@@ -9,13 +9,32 @@ const yaml = require("js-yaml");
 const execa = require("execa");
 const { ip } = require("address");
 
-module.exports = async ({ input, output, run, image }) => {
+const parse = require("../lib/parse");
+
+module.exports = async ({ input, output, run, image, config }) => {
   if (!run) {
     const spinner = ora().start("Starting creating files!");
     const filePath = input;
     const nodeInfo = JSON.parse(await readFileAsync(filePath, "utf8"));
     if (!existsSync(output)) spinner.succeed(`Created \`${output}\`.`);
     const outputDir = await makeDir(output);
+    let shouldAddImage = true;
+
+    if (config) {
+      spinner.start("Creating custom source files");
+      if (!existsSync(config)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${config}. 😕`)}\n`);
+      const userConfig = JSON.parse(await readFileAsync(config, "utf8"));
+      const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);
+      const dockerfile = await readFileAsync(path.join(__dirname, "../lib/Dockerfile"), "utf8");
+      for (const [i] of nodeInfo.entries()) {
+        const outDir = await makeDir(path.join(output, `btc-node-${i + 1}`));
+        await writeFileAsync(path.join(outDir, "consensus.h"), consensusHFile);
+        await writeFileAsync(path.join(outDir, "chainparams.cpp"), chainparamsCPPFile);
+        await writeFileAsync(path.join(outDir, "Dockerfile"), dockerfile);
+      }
+      shouldAddImage = false;
+      spinner.succeed("Created custom `consensus.h` and `chainparams.cpp`.");
+    }
 
     for (const [i, node] of nodeInfo.entries()) {
       spinner.start(`Creating \`btc-node-${i + 1}\``);
@@ -24,7 +43,9 @@ module.exports = async ({ input, output, run, image }) => {
         version: "3",
         services: {
           "btc-node": {
-            image,
+            ...(shouldAddImage
+              ? { image }
+              : { build: "." }),
             ports: [
               `${node.p2p_port}:18444`,
               ...(node.rpc_port ? [`${node.rpc_port}:18443`] : []),

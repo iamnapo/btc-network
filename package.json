@@ -15,7 +15,8 @@
   },
   "files": [
     "bin",
-    "src"
+    "src",
+    "lib"
   ],
   "main": "./bin/btc-network.js",
   "bin": {
@@ -33,7 +34,7 @@
   "dependencies": {
     "address": "^1.1.2",
     "chalk": "^2.4.2",
-    "execa": "^3.0.0",
+    "execa": "^3.2.0",
     "gradient-string": "^1.2.0",
     "inquirer": "^7.0.0",
     "js-yaml": "^3.13.1",
