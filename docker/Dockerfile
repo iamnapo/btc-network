@@ -4,8 +4,9 @@ LABEL maintainer "Napoleon-Christos Oikonomou <napoleonoikon@gmail.com>"
 
 # Install necessary tools
 RUN apt-get update
-RUN apt-get install curl ccache -y
+RUN apt-get install curl -y
 RUN apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils python3 libdb++-dev -y
+RUN apt-get install ccache -y
 
 WORKDIR /src/bitcoin
 COPY ./bitcoin .
