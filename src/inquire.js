@@ -18,6 +18,21 @@ module.exports = async () => {
     validate: (inpt) => (existsSync(inpt) ? true : `\`${inpt}\` does not exist!`),
   };
 
+  const customConfigChoiceQuestion = {
+    choices: ["Just use the default", "I'll supply my own"],
+    message: "⚙️\u{200D}  From what file to get consensus parameters?",
+    name: "configChoice",
+    type: "list",
+  };
+
+  const configFileQuestion = {
+    filter: (answer) => answer.trim(),
+    message: chalk.green("⚙️\u{200D}  What's the config file?"),
+    name: "config",
+    type: "input",
+    validate: (inpt) => (existsSync(inpt) ? true : `\`${inpt}\` does not exist!`),
+  };
+
   const dockerImageQuestion = {
     filter: (answer) => answer.trim(),
     message: chalk.green("🗂️\u{200D}  What image would you like to use?"),
@@ -53,7 +68,10 @@ module.exports = async () => {
 
   const { usage } = await inquirer.prompt(usagePrompt);
   if (usage === "Create required docker-compose files") {
-    const answers = await inquirer.prompt([inputFileQuestion, dockerImageQuestion, outputFolderCreateQuestion]);
+    let answers = await inquirer.prompt([inputFileQuestion, dockerImageQuestion]);
+    const { configChoice } = await inquirer.prompt(customConfigChoiceQuestion);
+    if (configChoice === "I'll supply my own") answers = { ...answers, ...(await inquirer.prompt(configFileQuestion)) };
+    answers = { ...answers, ...(await inquirer.prompt(outputFolderCreateQuestion)) };
     return answers;
   }
   const answers = await inquirer.prompt([outputFolderFindQuestion, nodeIdQuestion]);

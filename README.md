@@ -14,9 +14,7 @@ $ npm i -g @iamnapo/btc-network
 
 ## Usage
 
-**WARNING:** The input file must follow the structure of [`nodes.example.json`](./nodes.example.json).
-
-> Note: If you want to change consensus rules, start the CLI with `btc-network -c <config.json>`, where the config file follows the structure of [`config.example.json`](./config.example.json). Check [`config.js`](./lib/config.js) for available options.
+**WARNING:** Check the files [`templates/`](./templates) for the required input structure.
 
 ![Usage](./usage.gif)
 
