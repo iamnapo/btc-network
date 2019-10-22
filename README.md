@@ -8,13 +8,21 @@
 
 ## Install
 
+If you already have Docker & Node.js:
+
 ```sh
 $ npm i -g @iamnapo/btc-network
 ```
 
+If not:
+
+```sh
+$ curl -o- https://raw.githubusercontent.com/iamnapo/btc-network/master/install.sh | bash
+```
+
 ## Usage
 
-**WARNING:** Check the files [`templates/`](./templates) for the required input structure.
+**WARNING:** Check the files in [`templates/`](./templates) for the required input structure.
 
 ![Usage](./usage.gif)
 
