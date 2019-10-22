@@ -1,6 +1,6 @@
 {
   "name": "@iamnapo/btc-network",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Tiny module that creates a btc network using docker images",
   "homepage": "https://github.com/iamnapo/btc-network#readme",
   "bugs": {
