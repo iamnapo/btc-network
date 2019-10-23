@@ -1,5 +1,5 @@
 const path = require("path");
-const { existsSync, readFile, writeFile } = require("fs");
+const { existsSync, readFile, writeFile, realpathSync } = require("fs");
 const chalk = require("chalk");
 const ora = require("ora");
 const readFileAsync = require("util").promisify(readFile);
@@ -14,7 +14,7 @@ const parse = require("../lib/parse");
 module.exports = async ({ input, output, run, image, config }) => {
   if (!run) {
     const spinner = ora().start("Starting creating files!");
-    const filePath = input;
+    const filePath = realpathSync(input);
     const nodeInfo = JSON.parse(await readFileAsync(filePath, "utf8"));
     if (!existsSync(output)) spinner.succeed(`Created \`${output}\`.`);
     const outputDir = await makeDir(output);
@@ -22,8 +22,12 @@ module.exports = async ({ input, output, run, image, config }) => {
 
     if (config) {
       spinner.start("Creating custom source files");
-      if (!existsSync(config)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${config}. 😕`)}\n`);
-      const userConfig = JSON.parse(await readFileAsync(config, "utf8"));
+      try {
+        realpathSync(config);
+      } catch (e) {
+        return console.log(`\n${chalk.red.bold(`Couldn't locate ${e.path}. 😕`)}\n`);
+      }
+      const userConfig = JSON.parse(await readFileAsync(realpathSync(config), "utf8"));
       const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);
       const dockerfile = await readFileAsync(path.join(__dirname, "../lib/Dockerfile"), "utf8");
       for (const [i] of nodeInfo.entries()) {

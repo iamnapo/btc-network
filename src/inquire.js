@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const chalk = require("chalk");
-const { existsSync } = require("fs");
+const { realpathSync } = require("fs");
 
 module.exports = async () => {
   const usagePrompt = {
@@ -15,7 +15,14 @@ module.exports = async () => {
     message: chalk.green("📦\u{200D} What's the input file?"),
     name: "input",
     type: "input",
-    validate: (inpt) => (existsSync(inpt) ? true : `\`${inpt}\` does not exist!`),
+    validate: (inpt) => {
+      try {
+        realpathSync(inpt);
+        return true;
+      } catch (e) {
+        return `\`${inpt}\` does not exist!`;
+      }
+    },
   };
 
   const customConfigChoiceQuestion = {
@@ -30,7 +37,14 @@ module.exports = async () => {
     message: chalk.green("⚙️\u{200D}  What's the config file?"),
     name: "config",
     type: "input",
-    validate: (inpt) => (existsSync(inpt) ? true : `\`${inpt}\` does not exist!`),
+    validate: (inpt) => {
+      try {
+        realpathSync(inpt);
+        return true;
+      } catch (e) {
+        return `\`${inpt}\` does not exist!`;
+      }
+    },
   };
 
   const dockerImageQuestion = {
@@ -55,7 +69,14 @@ module.exports = async () => {
     name: "output",
     default: "compose_files",
     type: "input",
-    validate: (inpt) => (existsSync(inpt) ? true : `\`${inpt}\` does not exist!`),
+    validate: (inpt) => {
+      try {
+        realpathSync(inpt);
+        return true;
+      } catch (e) {
+        return `\`${inpt}\` does not exist!`;
+      }
+    },
   };
 
   const nodeIdQuestion = {
