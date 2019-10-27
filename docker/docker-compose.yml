@@ -12,7 +12,7 @@ services:
       - '-addnode=node2:18444'
       - '-addnode=node3:18444'
       - '-addnode=node4:18444'
-      - '-addnode=host.docker.internal:18444'
+      # - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node1'
     volumes:
       - './data/node1:/root/node1'
@@ -28,7 +28,7 @@ services:
       - '-addnode=node1:18444'
       - '-addnode=node3:18444'
       - '-addnode=node4:18444'
-      - '-addnode=host.docker.internal:18444'
+      # - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node2'
     volumes:
       - './data/node2:/root/node2'
@@ -44,7 +44,7 @@ services:
       - '-addnode=node1:18444'
       - '-addnode=node2:18444'
       - '-addnode=node4:18444'
-      - '-addnode=host.docker.internal:18444'
+      # - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node3'
     volumes:
       - './data/node3:/root/node3'
@@ -60,7 +60,7 @@ services:
       - '-addnode=node1:18444'
       - '-addnode=node2:18444'
       - '-addnode=node3:18444'
-      - '-addnode=host.docker.internal:18444'
+      # - '-addnode=host.docker.internal:18444'
       - '-datadir=/root/node4'
     volumes:
       - './data/node4:/root/node4'
