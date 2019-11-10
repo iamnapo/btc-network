@@ -1,7 +1,7 @@
 version: '3'
 services:
   node1:
-    image: iamnapo/btc-network:latest
+    image: iamnapo/btc-network:trickle
     ports:
       - '18401:18443'
       - '18501:18444'
@@ -17,7 +17,7 @@ services:
     volumes:
       - './data/node1:/root/node1'
   node2:
-    image: iamnapo/btc-network:latest
+    image: iamnapo/btc-network:trickle
     ports:
       - '18402:18443'
       - '18502:18444'
@@ -33,7 +33,7 @@ services:
     volumes:
       - './data/node2:/root/node2'
   node3:
-    image: iamnapo/btc-network:latest
+    image: iamnapo/btc-network:trickle
     ports:
       - '18403:18443'
       - '18503:18444'
@@ -49,7 +49,7 @@ services:
     volumes:
       - './data/node3:/root/node3'
   node4:
-    image: iamnapo/btc-network:latest
+    image: iamnapo/btc-network:trickle
     ports:
       - '18404:18443'
       - '18504:18444'

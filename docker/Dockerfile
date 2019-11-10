@@ -26,5 +26,8 @@ RUN make install -j"$(($(nproc)+1))"
 # Copy own config files
 COPY bitcoin.conf /root/.bitcoin/bitcoin.conf
 
+# Add trickle to limit bandwidth
+RUN apt-get install trickle -y
+
 # Start the daemon
-ENTRYPOINT ["./src/bitcoind"]
+ENTRYPOINT ["trickle", "-s", "-d", "5", "-u", "5", "./src/bitcoind"]
