@@ -2,8 +2,8 @@ const meow = require("meow");
 const updateNotifier = require("update-notifier");
 
 module.exports = async () => {
-  const cli = meow(
-    `
+	const cli = meow(
+		`
   Usage
     $ btc-network
 
@@ -20,17 +20,17 @@ module.exports = async () => {
   Non-Interactive Example
     $ btc-network -i nodes.json -o out_files
   `, {
-      flags: {
-        input: { alias: "i", type: "string" },
-        output: { alias: "o", type: "string", default: "compose_files" },
-        image: { alias: "e", type: "string", default: "iamnapo/btc-network:latest" },
-        run: { alias: "r", type: "string" },
-        config: { alias: "c", type: "string" },
-      },
-    },
-  );
-  updateNotifier({ pkg: cli.pkg, shouldNotifyInNpmScript: true, updateCheckInterval: 0 }).notify();
+			flags: {
+				input: { alias: "i", type: "string" },
+				output: { alias: "o", type: "string", default: "compose_files" },
+				image: { alias: "e", type: "string", default: "iamnapo/btc-network:latest" },
+				run: { alias: "r", type: "string" },
+				config: { alias: "c", type: "string" },
+			},
+		},
+	);
+	updateNotifier({ pkg: cli.pkg, shouldNotifyInNpmScript: true, updateCheckInterval: 0 }).notify();
 
-  const { input, output, image, run, config } = cli.flags;
-  return { input, output, image, run, config };
+	const { input, output, image, run, config } = cli.flags;
+	return { input, output, image, run, config };
 };
