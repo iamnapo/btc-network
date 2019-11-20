@@ -60,3 +60,4 @@ typings/
 # own files
 regtest
 compose_files
+binaries

@@ -23,6 +23,7 @@
 		"btc-network": "./bin/btc-network.js"
 	},
 	"scripts": {
+		"build": "pkg . -t node12-linux-x64,node12-macos-x64,node12-win-x64 --out-path binaries",
 		"start": "node ./bin/btc-network.js",
 		"test": "eslint ."
 	},
@@ -41,6 +42,7 @@
 		"make-dir": "^3.0.0",
 		"meow": "^5.0.0",
 		"ora": "^4.0.3",
+		"pkg": "^4.4.0",
 		"update-notifier": "^3.0.1"
 	},
 	"devDependencies": {
@@ -53,10 +55,10 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.16.0",
 		"eslint-plugin-react-hooks": "^2.3.0",
-		"husky": "^3.0.9",
-		"mathjs": "^6.2.3",
+		"husky": "^3.1.0",
+		"mathjs": "^6.2.5",
 		"moment": "^2.24.0",
-		"mongoose": "^5.7.11"
+		"mongoose": "^5.7.12"
 	},
 	"engines": {
 		"node": ">=10"

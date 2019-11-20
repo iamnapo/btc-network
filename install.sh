@@ -19,6 +19,7 @@
 
 	if ! command_exists docker || ! command_exists docker-compose; then
 		curl -fsSL https://get.docker.com -o get-docker.sh
+		sh get-docker.sh
 	fi
 	echo "$(docker --version)"
 	echo "$(docker-compose --version)"
