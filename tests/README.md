@@ -13,3 +13,5 @@
 ![no throttling](./no_throttle.png)
 ![5KBs throttle](./5KBs_throttle.png)
 ![1KBs throttle](./1KBs_throttle.png)
+
+> Data used available [here](./block-dbs.zip).
