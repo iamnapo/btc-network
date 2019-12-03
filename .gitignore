@@ -61,3 +61,5 @@ typings/
 regtest
 compose_files
 binaries
+nodes.md
+nodes.okeanos.json

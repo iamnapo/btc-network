@@ -17,11 +17,16 @@
 	fi
 	echo "btc-network version $(btc-network --version)"
 
-	if ! command_exists docker || ! command_exists docker-compose; then
+	if ! command_exists docker; then
 		curl -fsSL https://get.docker.com -o get-docker.sh
 		sh get-docker.sh
 	fi
 	echo "$(docker --version)"
+
+	if ! command_exists docker-compose; then
+		sudo curl -L https://github.com/docker/compose/releases/download/1.25.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+		sudo chmod +x /usr/local/bin/docker-compose
+	fi
 	echo "$(docker-compose --version)"
 
 } # this ensures the entire script is downloaded #
