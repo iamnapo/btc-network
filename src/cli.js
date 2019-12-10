@@ -20,7 +20,7 @@ function getIntro(columns) {
 
 (async () => {
 	const argInfo = await checkArgs();
-	const options = argInfo.input !== undefined || argInfo.run !== undefined ? argInfo : {
+	const options = [argInfo.input, argInfo.run, argInfo.stop].some((_) => !!_) ? argInfo : {
 		...argInfo,
 		...(await (() => {
 			console.log(getIntro(process.stdout.columns));

@@ -13,7 +13,8 @@ module.exports = async () => {
   Options
     --input, -i    Input file containing node info
     --output, -o   Folder to output created docker-compose files (Default: "compose_files")
-    --run, -r      Start the docker container of a specific node
+		--run, -r      Start the docker container of a specific node
+		--stop, -s     Stop the docker container of a specific node
     --image, -e    The image to use for creating the node (Default: "iamnapo/btc-network:latest")
     --config, -c   Custom consensus configuration properties file
 
@@ -25,12 +26,13 @@ module.exports = async () => {
 				output: { alias: "o", type: "string", default: "compose_files" },
 				image: { alias: "e", type: "string", default: "iamnapo/btc-network:latest" },
 				run: { alias: "r", type: "string" },
+				stop: { alias: "s", type: "string" },
 				config: { alias: "c", type: "string" },
 			},
 		},
 	);
 	updateNotifier({ pkg: cli.pkg, shouldNotifyInNpmScript: true, updateCheckInterval: 0 }).notify();
 
-	const { input, output, image, run, config } = cli.flags;
-	return { input, output, image, run, config };
+	const { input, output, image, run, stop, config } = cli.flags;
+	return { input, output, image, run, stop, config };
 };

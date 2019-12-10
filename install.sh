@@ -2,6 +2,8 @@
 
 { # this ensures the entire script is downloaded #
 
+	set -e
+
 	command_exists() { command -v "$@" >/dev/null 2>&1; }
 
 	if ! command_exists npm; then
@@ -28,5 +30,7 @@
 		sudo chmod +x /usr/local/bin/docker-compose
 	fi
 	echo "$(docker-compose --version)"
+
+	set +e
 
 } # this ensures the entire script is downloaded #

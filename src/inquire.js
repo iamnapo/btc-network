@@ -4,7 +4,7 @@ const { realpathSync } = require("fs");
 
 module.exports = async () => {
 	const usagePrompt = {
-		choices: ["Create required docker-compose files", "Run pre-existing node"],
+		choices: ["Create required docker-compose files", "Run pre-existing node", "Stop a running node"],
 		message: "💭\u{200D} What would you like to do?",
 		name: "usage",
 		type: "list",
@@ -80,8 +80,8 @@ module.exports = async () => {
 	};
 
 	const nodeIdQuestion = {
-		message: chalk.green("⛵\u{200D}  What's the id of the Node?"),
-		name: "run",
+		message: chalk.green("⛵\u{200D} What's the id of the Node?"),
+		name: "nodeId",
 		default: 1,
 		type: "number",
 		validate: (inpt) => ((inpt !== parseInt(inpt, 10) || inpt < 1) ? "This must be a positive integer!" : true),
@@ -96,5 +96,5 @@ module.exports = async () => {
 		return answers;
 	}
 	const answers = await inquirer.prompt([outputFolderFindQuestion, nodeIdQuestion]);
-	return answers;
+	return { ...answers, ...(usage === "Run pre-existing node" ? { run: answers.nodeId } : { stop: answers.nodeId }) };
 };
