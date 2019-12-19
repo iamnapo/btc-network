@@ -38,7 +38,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 			}
 			return null;
 		} catch (error) {
-			spinner.info(chalk.red(error.stderr || error.message));
+			spinner.info(chalk.red(error.stderr || error.shortMessage));
 			return spinner.fail("Couldn't start node. 😕");
 		}
 	}
@@ -50,7 +50,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 			await execa("docker-compose", ["-f", composeFile, "down", "-v"]);
 			return spinner.succeed(`Node btc-node-${stop} stopped!`);
 		} catch (error) {
-			spinner.info(chalk.red(error.stderr || error.message));
+			spinner.info(chalk.red(error.stderr || error.shortMessage));
 			return spinner.fail("Couldn't stop node. 😕");
 		}
 	}

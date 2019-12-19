@@ -13,8 +13,8 @@ module.exports = async () => {
   Options
     --input, -i    Input file containing node info
     --output, -o   Folder to output created docker-compose files (Default: "compose_files")
-		--run, -r      Start the docker container of a specific node
-		--stop, -s     Stop the docker container of a specific node
+    --run, -r      Start the docker container of a specific node
+    --stop, -s     Stop the docker container of a specific node
     --image, -e    The image to use for creating the node (Default: "iamnapo/btc-network:latest")
     --config, -c   Custom consensus configuration properties file
 
