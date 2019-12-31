@@ -30,4 +30,4 @@ COPY bitcoin.conf /root/.bitcoin/bitcoin.conf
 RUN apt-get install trickle -y
 
 # Start the daemon
-ENTRYPOINT ["trickle", "-s", "-d", "5", "-u", "5", "./src/bitcoind"]
+ENTRYPOINT ["trickle", "-s", "-d", "63", "-u", "63", "./src/bitcoind"]

@@ -7,15 +7,13 @@ const mongooseOptions = {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useFindAndModify: false,
-	reconnectTries: 30,
-	reconnectInterval: 500,
 	poolSize: 100,
 	keepAlive: true,
 	keepAliveInitialDelay: 300000,
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-limit-5", mongooseOptions);
+mongoose.connect("mongodb://localhost:27017/btc-network-limit-63", mongooseOptions);
 
 (async () => {
 	const blocks = await Block.find().exec();

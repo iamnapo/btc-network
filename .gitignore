@@ -63,3 +63,4 @@ compose_files
 binaries
 nodes.md
 nodes.okeanos.json
+logs.*
