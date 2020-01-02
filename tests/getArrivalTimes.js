@@ -15,11 +15,12 @@ const mongooseOptions = {
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-limit-63", mongooseOptions);
+mongoose.connect("mongodb://localhost:27017/btc-network-limit-1-new", mongooseOptions);
 
 (async () => {
 	const logFile = fs.readFileSync(path.join(__dirname, "./logs.txt"), "utf8").split("\n");
 	const blocks = await Block.find().exec();
+	// const blocks = await Block.deleteMany({ $where: "this.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length === 1" }).exec();
 	logFile.forEach((line) => {
 		try {
 			const blockHash = line.match(/best=(\w.*(?= h))/)[1];

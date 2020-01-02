@@ -30,10 +30,10 @@ curl -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' -u btc:btc localho
 curl -d '{"jsonrpc":"2.0","id":"1","method":"getpeerinfo"}' -u btc:btc localhost:18403
 
 # get an address
-curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getnewaddress"}' localhost:18403
+curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getnewaddress"}' localhost:18404
 
 # mine the blocks
-curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"generatetoaddress", "params":[101,"2N7HPAz4Je6PpwmRupeiqoC2fZx8WaMrq3g"]}' localhost:18403
+curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"generatetoaddress", "params":[51,"2N4XRLtrNCx3n8AYDjCKGqHn76SAAHFVjSY"]}' localhost:18402
 
 # check on node1
 curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getblockcount"}' localhost:18401
@@ -48,7 +48,7 @@ curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getbalance"}' localhost:
 curl -u btc:btc -d '{"jsonrpc":"2.0","id":"1","method":"getnewaddress"}' localhost:18401
 
 # send from node3 to node1
-curl -d '{"jsonrpc":"2.0","id":"1","method":"sendtoaddress","params":["2N8i4K4viPFjfVY1GwenH8rhzTbM4wjt7Ax", "3.14"]}' -u btc:btc -s localhost:18403
+curl -d '{"jsonrpc":"2.0","id":"1","method":"sendtoaddress","params":["2N4XRLtrNCx3n8AYDjCKGqHn76SAAHFVjSY", "500"]}' -u btc:btc -s localhost:18403
 
 # now, since the block was not yet mined, we usually don't see the balance yet, unless  we specify 0 confirmations.
 curl -d '{"jsonrpc":"2.0","id":"1","method":"getbalance","params":[]}' -u btc:btc -s localhost:18401

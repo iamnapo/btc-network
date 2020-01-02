@@ -6,10 +6,10 @@ const chance = new Chance();
 
 const NODES_PORTS = [18401, 18402, 18403, 18404];
 const ADDRESSES = [
-	"2N7eLivAYENZP4ap6bFyKG1oYyJcN5dzG64",
-	"2MtaWEQv96FS5Mw2x9sArSDyW1jfmwSs3a4",
-	"2N7ozwfUzfYPZbQFDxSCyvKrjRBMBBTveEB",
-	"2N8789Pw9ovK5UXWxGwxgtZGZxM43B4zmLJ",
+	"2N5TFopmSQ7C4UVsBJEnBoToZKtrRoUyXs7",
+	"2NDckBMqJLRyWuVB2vnutAJSczCFUVN3tRv",
+	"2N5ofhsCfVKvianzc7xVvBuym362rAcXPeG",
+	"2N4XRLtrNCx3n8AYDjCKGqHn76SAAHFVjSY",
 ];
 
 module.exports = async () => {

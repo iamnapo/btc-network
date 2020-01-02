@@ -9,10 +9,10 @@ const Block = require("./models/Block");
 const chance = new Chance();
 const NODES_PORTS = [18401, 18402, 18403, 18404];
 const ADDRESSES = [
-	"2N7eLivAYENZP4ap6bFyKG1oYyJcN5dzG64",
-	"2MtaWEQv96FS5Mw2x9sArSDyW1jfmwSs3a4",
-	"2N7ozwfUzfYPZbQFDxSCyvKrjRBMBBTveEB",
-	"2N8789Pw9ovK5UXWxGwxgtZGZxM43B4zmLJ",
+	"2N5TFopmSQ7C4UVsBJEnBoToZKtrRoUyXs7",
+	"2NDckBMqJLRyWuVB2vnutAJSczCFUVN3tRv",
+	"2N5ofhsCfVKvianzc7xVvBuym362rAcXPeG",
+	"2N4XRLtrNCx3n8AYDjCKGqHn76SAAHFVjSY",
 ];
 
 const mongooseOptions = {
@@ -25,10 +25,10 @@ const mongooseOptions = {
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-limit-63", mongooseOptions);
+mongoose.connect("mongodb://localhost:27017/btc-network-limit-1-new", mongooseOptions);
 
 (async () => {
-	for (const i of Array(50).keys()) {
+	for (const i of Array(250 - 11).keys()) {
 		const { txCreator } = await createTxs();
 		const blockCreator = chance.pickone(NODES_PORTS);
 		const client = new Client({ port: blockCreator, username: "btc", password: "btc" });
@@ -43,5 +43,6 @@ mongoose.connect("mongodb://localhost:27017/btc-network-limit-63", mongooseOptio
 
 		// Hack to avoid soft-forks
 		await client.generateToAddress(3, ADDRESSES[NODES_PORTS.indexOf(txCreator)]);
+		await new Promise((r) => setTimeout(r, 2000));
 	}
 })().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));

@@ -29,5 +29,7 @@ COPY bitcoin.conf /root/.bitcoin/bitcoin.conf
 # Add trickle to limit bandwidth
 RUN apt-get install trickle -y
 
+ENV BTC_SPEED 63
+
 # Start the daemon
-ENTRYPOINT ["trickle", "-s", "-d", "63", "-u", "63", "./src/bitcoind"]
+ENTRYPOINT ["trickle", "-s", "-d", "$BTC_SPEED", "-u", "$BTC_SPEED", "./src/bitcoind"]
