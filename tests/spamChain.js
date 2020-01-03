@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const Client = require("bitcoin-core");
 const Chance = require("chance");
 const mongoose = require("mongoose");
@@ -28,7 +27,7 @@ const mongooseOptions = {
 mongoose.connect("mongodb://localhost:27017/btc-network-limit-1-new", mongooseOptions);
 
 (async () => {
-	for (const i of Array(250 - 11).keys()) {
+	for (let i = 0; i < 200; i += 1) {
 		const { txCreator } = await createTxs();
 		const blockCreator = chance.pickone(NODES_PORTS);
 		const client = new Client({ port: blockCreator, username: "btc", password: "btc" });

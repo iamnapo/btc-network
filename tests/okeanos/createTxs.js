@@ -1,4 +1,3 @@
-/* eslint-disable no-loop-func, no-unused-vars */
 const Client = require("bitcoin-core");
 const Chance = require("chance");
 
@@ -57,7 +56,7 @@ module.exports = async () => {
 	const numOfBatches = Math.trunc(numOfTxs / 16);
 
 	const startTime = process.hrtime();
-	for (const i of Array(numOfBatches).keys()) {
+	for (let i = 0; i < numOfBatches; i += 1) {
 		await Promise.all([...Array(16)].map(() => client.sendToAddress(receiverAddr, 0.00006)));
 	}
 	const endTime = process.hrtime(startTime);

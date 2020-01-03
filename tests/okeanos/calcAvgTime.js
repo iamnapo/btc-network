@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const mathjs = require("mathjs");
 
-const Block = require("./models/Block");
+const Block = require("../models/Block");
 
 const mongooseOptions = {
 	useNewUrlParser: true,

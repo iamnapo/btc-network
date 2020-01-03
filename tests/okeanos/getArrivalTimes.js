@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 const moment = require("moment");
 
-const Block = require("./models/Block");
+const Block = require("../models/Block");
 
 const mongooseOptions = {
 	useNewUrlParser: true,

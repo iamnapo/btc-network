@@ -58,7 +58,7 @@
 		"husky": "^3.1.0",
 		"mathjs": "^6.3.0",
 		"moment": "^2.24.0",
-		"mongoose": "^5.8.3"
+		"mongoose": "^5.8.4"
 	},
 	"engines": {
 		"node": ">=10"
