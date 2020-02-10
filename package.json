@@ -37,7 +37,7 @@
 		"chalk": "^3.0.0",
 		"execa": "^4.0.0",
 		"gradient-string": "^1.2.0",
-		"inquirer": "^7.0.3",
+		"inquirer": "^7.0.4",
 		"js-yaml": "^3.13.1",
 		"make-dir": "^3.0.0",
 		"meow": "^6.0.0",
@@ -55,7 +55,7 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.18.0",
 		"eslint-plugin-react-hooks": "^2.3.0",
-		"husky": "^4.2.0",
+		"husky": "^4.2.1",
 		"mathjs": "^6.5.0",
 		"moment": "^2.24.0",
 		"mongoose": "^5.8.9"
