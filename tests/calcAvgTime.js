@@ -13,12 +13,15 @@ const mongooseOptions = {
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-limit-1-new", mongooseOptions);
+mongoose.connect("mongodb://localhost:27017/btc-network-okeanos", mongooseOptions);
 
 (async () => {
 	const blocks = await Block.find().exec();
 	const blockAverages = [];
-	blocks.forEach((block) => blockAverages.push(mathjs.mean([0, ...block.arrivedAfterMillis.filter(Number.isFinite)]) / 1000));
+	blocks.forEach((block) => {
+		const arr = block.arrivedAfterMillis.filter(Number.isFinite);
+		blockAverages.push(mathjs.mean([...(arr.length ? arr : [0])]) / 1000);
+	});
 	const allTimes = blocks.reduce((all, cur) => all.concat(cur.arrivedAfterMillis), []).filter(Number.isFinite).filter((e) => e > 0);
 	console.log(`Min: ${mathjs.min(allTimes)}`);
 	console.log(`Max: ${mathjs.max(allTimes)}`);

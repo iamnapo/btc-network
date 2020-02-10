@@ -42,7 +42,7 @@
 		"make-dir": "^3.0.0",
 		"meow": "^6.0.0",
 		"ora": "^4.0.3",
-		"pkg": "^4.4.2",
+		"pkg": "^4.4.3",
 		"update-notifier": "^4.0.0"
 	},
 	"devDependencies": {
@@ -51,14 +51,14 @@
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb": "^18.0.1",
 		"eslint-config-iamnapo": "^2.1.1",
-		"eslint-plugin-import": "^2.20.0",
+		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-react": "^7.18.0",
+		"eslint-plugin-react": "^7.18.3",
 		"eslint-plugin-react-hooks": "^2.3.0",
 		"husky": "^4.2.1",
-		"mathjs": "^6.5.0",
+		"mathjs": "^6.6.0",
 		"moment": "^2.24.0",
-		"mongoose": "^5.8.9"
+		"mongoose": "^5.8.11"
 	},
 	"engines": {
 		"node": ">=10"
