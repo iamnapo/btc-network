@@ -32,4 +32,4 @@ RUN apt-get install trickle -y
 ENV BTC_SPEED 63
 
 # Start the daemon
-ENTRYPOINT ["trickle", "-s", "-d", "$BTC_SPEED", "-u", "$BTC_SPEED", "./src/bitcoind"]
+ENTRYPOINT ["sh", "-c", "trickle", "-s", "-d", "$BTC_SPEED", "-u", "$BTC_SPEED", "./src/bitcoind"]

@@ -2,7 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const mathjs = require("mathjs");
 
-const Block = require("../models/Block");
+const Block = require("../../models/Block");
 
 const mongooseOptions = {
 	useNewUrlParser: true,
@@ -19,7 +19,10 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 (async () => {
 	const blocks = await Block.find().exec();
 	const blockAverages = [];
-	blocks.forEach((block) => blockAverages.push(mathjs.mean([0, ...block.arrivedAfterMillis.filter(Number.isFinite)]) / 1000));
+	blocks.forEach((block) => {
+		const arr = block.arrivedAfterMillis.filter(Number.isFinite);
+		blockAverages.push(mathjs.mean([...(arr.length ? arr : [0])]) / 1000);
+	});
 	const allTimes = blocks.reduce((all, cur) => all.concat(cur.arrivedAfterMillis), []).filter(Number.isFinite).filter((e) => e > 0);
 	console.log(`Min: ${mathjs.min(allTimes)}`);
 	console.log(`Max: ${mathjs.max(allTimes)}`);

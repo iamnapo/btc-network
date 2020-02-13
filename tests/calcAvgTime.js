@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const mathjs = require("mathjs");
 
@@ -13,7 +14,7 @@ const mongooseOptions = {
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-okeanos", mongooseOptions);
+mongoose.connect(process.env.DB_URI, mongooseOptions);
 
 (async () => {
 	const blocks = await Block.find().exec();

@@ -1,0 +1,200 @@
+version: "3"
+services:
+  node1:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18401:18443"
+      - "18501:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node1"
+    volumes:
+      - "./data/node1:/root/node1"
+  node2:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18402:18443"
+      - "18502:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node2"
+    volumes:
+      - "./data/node2:/root/node2"
+  node3:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18403:18443"
+      - "18503:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node3"
+    volumes:
+      - "./data/node3:/root/node3"
+  node4:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18404:18443"
+      - "18504:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node4"
+    volumes:
+      - "./data/node4:/root/node4"
+  node5:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18405:18443"
+      - "18505:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node5"
+    volumes:
+      - "./data/node5:/root/node5"
+  node6:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18406:18443"
+      - "18506:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node6"
+    volumes:
+      - "./data/node6:/root/node6"
+  node7:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18407:18443"
+      - "18507:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node8:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node7"
+    volumes:
+          - "./data/node7:/root/node7"
+  node8:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18408:18443"
+      - "18508:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node9:18444"
+      - "-datadir=/root/node8"
+    volumes:
+          - "./data/node8:/root/node8"
+  node9:
+    image: iamnapo/btc-network:trickle
+    environment:
+      - "BTC_SPEED=5"
+    ports:
+      - "18409:18443"
+      - "18509:18444"
+    expose:
+      - "18444"
+    command:
+      - "-conf=/root/.bitcoin/bitcoin.conf"
+      - "-addnode=node1:18444"
+      - "-addnode=node2:18444"
+      - "-addnode=node3:18444"
+      - "-addnode=node4:18444"
+      - "-addnode=node5:18444"
+      - "-addnode=node6:18444"
+      - "-addnode=node7:18444"
+      - "-addnode=node8:18444"
+      - "-datadir=/root/node9"
+    volumes:
+          - "./data/node9:/root/node9"

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Client = require("bitcoin-core");
 const Chance = require("chance");
 const mongoose = require("mongoose");
@@ -24,7 +25,7 @@ const mongooseOptions = {
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-limit-1-new", mongooseOptions);
+mongoose.connect(process.env.DB_URI, mongooseOptions);
 
 (async () => {
 	for (let i = 0; i < 200; i += 1) {

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
@@ -15,7 +16,7 @@ const mongooseOptions = {
 	useUnifiedTopology: true,
 };
 
-mongoose.connect("mongodb://localhost:27017/btc-network-limit-1-new", mongooseOptions);
+mongoose.connect(process.env.DB_URI, mongooseOptions);
 
 (async () => {
 	const logFile = fs.readFileSync(path.join(__dirname, "./logs.txt"), "utf8").split("\n");
