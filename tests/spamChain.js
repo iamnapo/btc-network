@@ -45,4 +45,4 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		await client.generateToAddress(3, ADDRESSES[NODES_PORTS.indexOf(txCreator)]);
 		await new Promise((r) => setTimeout(r, 2000));
 	}
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));
+})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.log(error));

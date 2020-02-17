@@ -40,10 +40,10 @@
 		"inquirer": "^7.0.4",
 		"js-yaml": "^3.13.1",
 		"make-dir": "^3.0.2",
-		"meow": "^6.0.0",
+		"meow": "^6.0.1",
 		"ora": "^4.0.3",
 		"pkg": "^4.4.3",
-		"update-notifier": "^4.0.0"
+		"update-notifier": "^4.1.0"
 	},
 	"devDependencies": {
 		"bitcoin-core": "^3.0.0",
@@ -51,15 +51,16 @@
 		"dotenv": "^8.2.0",
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb": "^18.0.1",
-		"eslint-config-iamnapo": "^2.1.1",
+		"eslint-config-iamnapo": "^2.2.0",
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.18.3",
 		"eslint-plugin-react-hooks": "^2.3.0",
+		"eslint-plugin-unicorn": "^16.1.1",
 		"husky": "^4.2.3",
 		"mathjs": "^6.6.0",
 		"moment": "^2.24.0",
-		"mongoose": "^5.8.13"
+		"mongoose": "^5.9.1"
 	},
 	"engines": {
 		"node": ">=10"

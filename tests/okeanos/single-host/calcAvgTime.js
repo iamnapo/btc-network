@@ -21,7 +21,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 	const blockAverages = [];
 	blocks.forEach((block) => {
 		const arr = block.arrivedAfterMillis.filter(Number.isFinite);
-		blockAverages.push(mathjs.mean([...(arr.length ? arr : [0])]) / 1000);
+		blockAverages.push(mathjs.mean([...(arr.length > 0 ? arr : [0])]) / 1000);
 	});
 	const allTimes = blocks.reduce((all, cur) => all.concat(cur.arrivedAfterMillis), []).filter(Number.isFinite).filter((e) => e > 0);
 	console.log(`Min: ${mathjs.min(allTimes)}`);
@@ -30,4 +30,4 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 	console.log(`Median: ${mathjs.median(allTimes)}`);
 	console.log(`Std: ${mathjs.std(allTimes)}`);
 	console.log(JSON.stringify(blockAverages));
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));
+})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.log(error));

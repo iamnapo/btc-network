@@ -81,4 +81,4 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		// Hack to avoid soft-forks
 		await new Promise((r) => setTimeout(r, 1000 * 4));
 	}
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));
+})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.log(error));

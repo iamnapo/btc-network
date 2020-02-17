@@ -27,4 +27,4 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 	console.log(`Median: ${mathjs.median(allTimes)}`);
 	console.log(`Std: ${mathjs.std(allTimes)}`);
 	console.log(JSON.stringify(blockAverages));
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));
+})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.log(error));

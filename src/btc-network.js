@@ -26,12 +26,12 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 			}    JSON-RPC: localhost:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
 			}    P2P: localhost:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
 
-			if (/^10[.]|^172[.](1[6-9]|2[0-9]|3[0-1])[.]|^192[.]168[.]/.test(lanIp)) {
+			if (/^10\.|^172\.(1[6-9]|2\d|3[01])\.|^192\.168\./.test(lanIp)) {
 				console.log(`${chalk.green.bold(`  On your local network:${"\n"
 				}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
 				}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
 			}
-			if (/\b(?!(10)|192\.168|172\.(2[0-9]|1[6-9]|3[0-2]))[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/.test(lanIp)) {
+			if (/\b(?!(10)|192\.168|172\.(2\d|1[6-9]|3[0-2]))(?:\d{1,3}\.){3}\d{1,3}/.test(lanIp)) {
 				console.log(`${chalk.green.bold(`  Publicly (if this machine is accessible):${"\n"
 				}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
 				}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
@@ -65,8 +65,8 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		spinner.start("Creating custom source files");
 		try {
 			realpathSync(config);
-		} catch (e) {
-			return console.log(`\n${chalk.red.bold(`Couldn't locate ${e.path}. 😕`)}\n`);
+		} catch (error) {
+			return console.log(`\n${chalk.red.bold(`Couldn't locate ${error.path}. 😕`)}\n`);
 		}
 		const userConfig = JSON.parse(await readFileAsync(realpathSync(config), "utf8"));
 		const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);

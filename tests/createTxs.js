@@ -20,7 +20,7 @@ module.exports = async () => {
 
 	const startTime = process.hrtime();
 	for (let i = 0; i < numOfBatches; i += 1) {
-		await Promise.all([...Array(16)].map(() => client.sendToAddress(receiverAddr, 0.00006)));
+		await Promise.all([...new Array(16)].map(() => client.sendToAddress(receiverAddr, 0.00006)));
 	}
 	const endTime = process.hrtime(startTime);
 	const millisToCreateTxs = ((endTime[0] * 1e9) + endTime[1]) / 1e6;

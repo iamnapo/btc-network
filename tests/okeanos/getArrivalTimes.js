@@ -19,7 +19,7 @@ const mongooseOptions = {
 mongoose.connect(process.env.DB_URI, mongooseOptions);
 
 (async () => {
-	for (const i of Array(20).keys()) {
+	for (const i of new Array(20).keys()) {
 		const logFile = fs.readFileSync(path.join(__dirname, "logs", `./logs${i + 1}.txt`), "utf8").split("\n");
 		const blocks = await Block.find().exec();
 		// const blocks = await Block.deleteMany({ $where: "this.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length === 1" }).exec();

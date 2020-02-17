@@ -19,7 +19,7 @@ module.exports = async () => {
 			try {
 				realpathSync(inpt);
 				return true;
-			} catch (e) {
+			} catch (error) {
 				return `\`${inpt}\` does not exist!`;
 			}
 		},
@@ -41,7 +41,7 @@ module.exports = async () => {
 			try {
 				realpathSync(inpt);
 				return true;
-			} catch (e) {
+			} catch (error) {
 				return `\`${inpt}\` does not exist!`;
 			}
 		},
@@ -73,7 +73,7 @@ module.exports = async () => {
 			try {
 				realpathSync(inpt);
 				return true;
-			} catch (e) {
+			} catch (error) {
 				return `\`${inpt}\` does not exist!`;
 			}
 		},
