@@ -14,8 +14,8 @@ const parse = require("../lib/parse");
 
 module.exports = async ({ input, output, run, image, config, stop }) => {
 	if (run) {
-		const fldrs = await globby(path.posix.join(output, `btc-node-${run === "*" ? "+([0-9])" : run}`), { expandDirectories: false, onlyFiles: false });
-		const nodes = fldrs.map((p) => parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
+		const fld = await globby(path.posix.join(output, `btc-node-${run === "*" ? "+([0-9])" : run}`), { expandDirectories: false, onlyFiles: false });
+		const nodes = fld.map((p) => parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
 		for (const node of nodes) {
 			const composeFile = path.join(output, `btc-node-${node}`, "docker-compose.yml");
 			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
@@ -48,16 +48,21 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		return null;
 	}
 	if (stop) {
-		const composeFile = path.join(output, `btc-node-${stop}`, "docker-compose.yml");
-		if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
-		const spinner = ora().start(`Stoping \`btc-node-${stop}\``);
-		try {
-			await execa("docker-compose", ["-f", composeFile, "down", "-v"]);
-			return spinner.succeed(`Node btc-node-${stop} stopped!`);
-		} catch (error) {
-			spinner.info(chalk.red(error.stderr || error.shortMessage));
-			return spinner.fail("Couldn't stop node. 😕");
+		const fld = await globby(path.posix.join(output, `btc-node-${stop === "*" ? "+([0-9])" : stop}`), { expandDirectories: false, onlyFiles: false });
+		const nodes = fld.map((p) => parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
+		for (const node of nodes) {
+			const composeFile = path.join(output, `btc-node-${node}`, "docker-compose.yml");
+			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
+			const spinner = ora().start(`Stoping \`btc-node-${node}\``);
+			try {
+				await execa("docker-compose", ["-f", composeFile, "down", "-v"]);
+				spinner.succeed(`Node btc-node-${node} stopped!`);
+			} catch (error) {
+				spinner.info(chalk.red(error.stderr || error.shortMessage));
+				spinner.fail("Couldn't stop node. 😕");
+			}
 		}
+		return null;
 	}
 	const spinner = ora().start("Starting creating files!");
 	const filePath = realpathSync(input);

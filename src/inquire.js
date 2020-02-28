@@ -2,6 +2,11 @@ const inquirer = require("inquirer");
 const chalk = require("chalk");
 const { realpathSync } = require("fs");
 
+function isPositiveInteger(v) {
+	let i;
+	return v && (i = parseInt(v, 10)) && i > 0 && (i === v || `${i}` === v);
+}
+
 module.exports = async () => {
 	const usagePrompt = {
 		choices: ["Create required docker-compose files", "Run pre-existing node", "Stop a running node"],
@@ -84,10 +89,7 @@ module.exports = async () => {
 		name: "nodeId",
 		default: 1,
 		type: "input",
-		validate: (inpt) => {
-			if (inpt === "*") return true;
-			return (inpt !== parseInt(inpt, 10) || inpt < 1) ? "This must be a positive integer or `*`!" : true;
-		},
+		validate: (inpt) => ((isPositiveInteger(inpt) || inpt === "*") ? true : "This must be a positive integer or `*`!"),
 	};
 
 	const { usage } = await inquirer.prompt(usagePrompt);
