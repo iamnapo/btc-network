@@ -45,6 +45,8 @@
 
 ![Usage](./usage.gif)
 
+> `$ btc-network --help` for more info.
+
 ## License
 
 MIT © [Napoleon-Christos Oikonomou](https://iamnapo.me)
