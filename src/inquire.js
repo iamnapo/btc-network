@@ -83,8 +83,11 @@ module.exports = async () => {
 		message: chalk.green("⛵\u{200D} What's the id of the Node?"),
 		name: "nodeId",
 		default: 1,
-		type: "number",
-		validate: (inpt) => ((inpt !== parseInt(inpt, 10) || inpt < 1) ? "This must be a positive integer!" : true),
+		type: "input",
+		validate: (inpt) => {
+			if (inpt === "*") return true;
+			return (inpt !== parseInt(inpt, 10) || inpt < 1) ? "This must be a positive integer or `*`!" : true;
+		},
 	};
 
 	const { usage } = await inquirer.prompt(usagePrompt);

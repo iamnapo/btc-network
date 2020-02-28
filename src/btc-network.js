@@ -8,39 +8,44 @@ const makeDir = require("make-dir");
 const yaml = require("js-yaml");
 const execa = require("execa");
 const { ip } = require("address");
+const globby = require("globby");
 
 const parse = require("../lib/parse");
 
 module.exports = async ({ input, output, run, image, config, stop }) => {
 	if (run) {
-		const composeFile = path.join(output, `btc-node-${run}`, "docker-compose.yml");
-		if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
-		const spinner = ora().start(`Starting \`btc-node-${run}\``);
-		try {
-			await execa("docker-compose", ["-f", composeFile, "up", "-d"]);
-			const composeFileContent = await readFileAsync(composeFile);
-			const { services: { "btc-node": { ports } } } = yaml.safeLoad(composeFileContent);
-			spinner.succeed(`Node btc-node-${run} started! You can now access it.`);
-			const lanIp = ip();
-			console.log(`\n${chalk.green.bold(`  On this machine:${"\n"
-			}    JSON-RPC: localhost:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
-			}    P2P: localhost:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
+		const fldrs = await globby(path.posix.join(output, `btc-node-${run === "*" ? "+([0-9])" : run}`), { expandDirectories: false, onlyFiles: false });
+		const nodes = fldrs.map((p) => parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
+		for (const node of nodes) {
+			const composeFile = path.join(output, `btc-node-${node}`, "docker-compose.yml");
+			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
+			const spinner = ora().start(`Starting \`btc-node-${node}\``);
+			try {
+				await execa("docker-compose", ["-f", composeFile, "up", "-d"]);
+				const composeFileContent = await readFileAsync(composeFile);
+				const { services: { "btc-node": { ports } } } = yaml.safeLoad(composeFileContent);
+				spinner.succeed(`Node btc-node-${node} started! You can now access it.`);
+				const lanIp = ip();
+				console.log(`\n${chalk.green.bold(`  On this machine:${"\n"
+				}    JSON-RPC: localhost:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
+				}    P2P: localhost:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
 
-			if (/^10\.|^172\.(1[6-9]|2\d|3[01])\.|^192\.168\./.test(lanIp)) {
-				console.log(`${chalk.green.bold(`  On your local network:${"\n"
-				}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
-				}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
+				if (/^10\.|^172\.(1[6-9]|2\d|3[01])\.|^192\.168\./.test(lanIp)) {
+					console.log(`${chalk.green.bold(`  On your local network:${"\n"
+					}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
+					}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
+				}
+				if (/\b(?!(10)|192\.168|172\.(2\d|1[6-9]|3[0-2]))(?:\d{1,3}\.){3}\d{1,3}/.test(lanIp)) {
+					console.log(`${chalk.green.bold(`  Publicly (if this machine is accessible):${"\n"
+					}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
+					}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
+				}
+			} catch (error) {
+				spinner.info(chalk.red(error.stderr || error.shortMessage));
+				spinner.fail("Couldn't start node. 😕");
 			}
-			if (/\b(?!(10)|192\.168|172\.(2\d|1[6-9]|3[0-2]))(?:\d{1,3}\.){3}\d{1,3}/.test(lanIp)) {
-				console.log(`${chalk.green.bold(`  Publicly (if this machine is accessible):${"\n"
-				}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
-				}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
-			}
-			return null;
-		} catch (error) {
-			spinner.info(chalk.red(error.stderr || error.shortMessage));
-			return spinner.fail("Couldn't start node. 😕");
 		}
+		return null;
 	}
 	if (stop) {
 		const composeFile = path.join(output, `btc-node-${stop}`, "docker-compose.yml");
