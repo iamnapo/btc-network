@@ -38,12 +38,11 @@
 		"execa": "^4.0.0",
 		"globby": "^11.0.0",
 		"gradient-string": "^1.2.0",
-		"inquirer": "^7.0.4",
+		"inquirer": "^7.0.6",
 		"js-yaml": "^3.13.1",
 		"make-dir": "^3.0.2",
 		"meow": "^6.0.1",
 		"ora": "^4.0.3",
-		"pkg": "^4.4.3",
 		"update-notifier": "^4.1.0"
 	},
 	"devDependencies": {
@@ -55,13 +54,14 @@
 		"eslint-config-iamnapo": "^2.2.0",
 		"eslint-plugin-import": "^2.20.1",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-react": "^7.18.3",
+		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^2.5.0",
-		"eslint-plugin-unicorn": "^16.1.1",
+		"eslint-plugin-unicorn": "^17.0.1",
 		"husky": "^4.2.3",
 		"mathjs": "^6.6.1",
 		"moment": "^2.24.0",
-		"mongoose": "^5.9.2"
+		"mongoose": "^5.9.3",
+		"pkg": "^4.4.4"
 	},
 	"engines": {
 		"node": ">=10"

@@ -9,7 +9,7 @@ function isPositiveInteger(v) {
 
 module.exports = async () => {
 	const usagePrompt = {
-		choices: ["Create required docker-compose files", "Run pre-existing node", "Stop a running node"],
+		choices: ["Create required docker-compose files", "Run pre-existing nodes", "Stop running nodes"],
 		message: "💭\u{200D} What would you like to do?",
 		name: "usage",
 		type: "list",
