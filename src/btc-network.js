@@ -18,7 +18,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		const nodes = fld.map((p) => parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
 		for (const node of nodes) {
 			const composeFile = path.join(output, `btc-node-${node}`, "docker-compose.yml");
-			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
+			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn’t locate ${composeFile}. 😕`)}\n`);
 			const spinner = ora().start(`Starting \`btc-node-${node}\``);
 			try {
 				await execa("docker-compose", ["-f", composeFile, "up", "-d"]);
@@ -42,7 +42,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 				}
 			} catch (error) {
 				spinner.info(chalk.red(error.stderr || error.shortMessage));
-				spinner.fail("Couldn't start node. 😕");
+				spinner.fail("Couldn’t start node. 😕");
 			}
 		}
 		return null;
@@ -52,14 +52,14 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		const nodes = fld.map((p) => parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
 		for (const node of nodes) {
 			const composeFile = path.join(output, `btc-node-${node}`, "docker-compose.yml");
-			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn't locate ${composeFile}. 😕`)}\n`);
+			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn’t locate ${composeFile}. 😕`)}\n`);
 			const spinner = ora().start(`Stoping \`btc-node-${node}\``);
 			try {
 				await execa("docker-compose", ["-f", composeFile, "down", "-v"]);
 				spinner.succeed(`Node btc-node-${node} stopped!`);
 			} catch (error) {
 				spinner.info(chalk.red(error.stderr || error.shortMessage));
-				spinner.fail("Couldn't stop node. 😕");
+				spinner.fail("Couldn’t stop node. 😕");
 			}
 		}
 		return null;
@@ -76,7 +76,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		try {
 			realpathSync(config);
 		} catch (error) {
-			return console.log(`\n${chalk.red.bold(`Couldn't locate ${error.path}. 😕`)}\n`);
+			return console.log(`\n${chalk.red.bold(`Couldn’t locate ${error.path}. 😕`)}\n`);
 		}
 		const userConfig = JSON.parse(await readFileAsync(realpathSync(config), "utf8"));
 		const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);

@@ -17,7 +17,7 @@ module.exports = async () => {
 
 	const inputFileQuestion = {
 		filter: (answer) => answer.trim(),
-		message: chalk.green("📦\u{200D} What's the input file?"),
+		message: chalk.green("📦\u{200D} What’s the input file?"),
 		name: "input",
 		type: "input",
 		validate: (inpt) => {
@@ -31,7 +31,7 @@ module.exports = async () => {
 	};
 
 	const customConfigChoiceQuestion = {
-		choices: ["Just use the default", "I'll supply my own"],
+		choices: ["Just use the default", "I’ll supply my own"],
 		message: "⚙️\u{200D}  From what file to get consensus parameters?",
 		name: "configChoice",
 		type: "list",
@@ -39,7 +39,7 @@ module.exports = async () => {
 
 	const configFileQuestion = {
 		filter: (answer) => answer.trim(),
-		message: chalk.green("⚙️\u{200D}  What's the config file?"),
+		message: chalk.green("⚙️\u{200D}  What’s the config file?"),
 		name: "config",
 		type: "input",
 		validate: (inpt) => {
@@ -85,7 +85,7 @@ module.exports = async () => {
 	};
 
 	const nodeIdQuestion = {
-		message: chalk.green("⛵\u{200D} What's the id of the Node?"),
+		message: chalk.green("⛵\u{200D} What’s the id of the Node?"),
 		name: "nodeId",
 		default: 1,
 		type: "input",
@@ -96,7 +96,7 @@ module.exports = async () => {
 	if (usage === "Create required docker-compose files") {
 		let answers = await inquirer.prompt([inputFileQuestion, dockerImageQuestion]);
 		const { configChoice } = await inquirer.prompt(customConfigChoiceQuestion);
-		if (configChoice === "I'll supply my own") answers = { ...answers, ...(await inquirer.prompt(configFileQuestion)) };
+		if (configChoice === "I’ll supply my own") answers = { ...answers, ...(await inquirer.prompt(configFileQuestion)) };
 		answers = { ...answers, ...(await inquirer.prompt(outputFolderCreateQuestion)) };
 		return answers;
 	}
