@@ -32,6 +32,9 @@
 			"pre-commit": "yarn test"
 		}
 	},
+	"resolutions": {
+		"**/**/minimist": "^0.2.1 || ^1.2.3"
+	},
 	"dependencies": {
 		"address": "^1.1.2",
 		"chalk": "^3.0.0",
@@ -60,7 +63,7 @@
 		"husky": "^4.2.3",
 		"mathjs": "^6.6.1",
 		"moment": "^2.24.0",
-		"mongoose": "^5.9.4",
+		"mongoose": "^5.9.5",
 		"pkg": "^4.4.4"
 	},
 	"engines": {
