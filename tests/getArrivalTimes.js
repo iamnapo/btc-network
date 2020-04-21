@@ -25,7 +25,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 	logFile.forEach((line) => {
 		try {
 			const blockHash = line.match(/best=(\w.*(?= h))/)[1];
-			const arrivedAtNode = parseInt(line.match(/^node(\d.*(?=_1))/)[1] - 1, 10);
+			const arrivedAtNode = Number.parseInt(line.match(/^node(\d.*(?=_1))/)[1] - 1, 10);
 			const arrivedAt = moment(line.match(/\| (\w.*?(?= ))/)[1]).valueOf();
 			const block = blocks.find((e) => e.blockHash === blockHash);
 			if (block) {

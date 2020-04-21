@@ -37,15 +37,15 @@
 	},
 	"dependencies": {
 		"address": "^1.1.2",
-		"chalk": "^3.0.0",
+		"chalk": "^4.0.0",
 		"execa": "^4.0.0",
 		"globby": "^11.0.0",
 		"gradient-string": "^1.2.0",
 		"inquirer": "^7.1.0",
 		"js-yaml": "^3.13.1",
 		"make-dir": "^3.0.2",
-		"meow": "^6.0.1",
-		"ora": "^4.0.3",
+		"meow": "^6.1.0",
+		"ora": "^4.0.4",
 		"update-notifier": "^4.1.0"
 	},
 	"devDependencies": {
@@ -54,17 +54,17 @@
 		"dotenv": "^8.2.0",
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb": "^18.1.0",
-		"eslint-config-iamnapo": "^2.2.1",
-		"eslint-plugin-import": "^2.20.1",
+		"eslint-config-iamnapo": "^3.0.0",
+		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
-		"eslint-plugin-react-hooks": "^2.5.0",
-		"eslint-plugin-unicorn": "^17.2.0",
-		"husky": "^4.2.3",
-		"mathjs": "^6.6.1",
+		"eslint-plugin-react-hooks": "^3.0.0",
+		"eslint-plugin-unicorn": "^18.0.1",
+		"husky": "^4.2.5",
+		"mathjs": "^6.6.4",
 		"moment": "^2.24.0",
-		"mongoose": "^5.9.5",
-		"pkg": "^4.4.4"
+		"mongoose": "^5.9.10",
+		"pkg": "^4.4.7"
 	},
 	"engines": {
 		"node": ">=10"

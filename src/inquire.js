@@ -4,7 +4,7 @@ const { realpathSync } = require("fs");
 
 function isPositiveInteger(v) {
 	let i;
-	return v && (i = parseInt(v, 10)) && i > 0 && (i === v || `${i}` === v);
+	return v && (i = Number.parseInt(v, 10)) && i > 0 && (i === v || `${i}` === v);
 }
 
 module.exports = async () => {
