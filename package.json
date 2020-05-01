@@ -23,7 +23,7 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "pkg . -t node12-linux-x64,node12-macos-x64,node12-win-x64 --out-path binaries",
+		"build": "pkg . -t node14-linux-x64,node14-macos-x64,node14-win-x64 --out-path binaries",
 		"start": "node ./bin/btc-network.js",
 		"test": "eslint ."
 	},
@@ -33,7 +33,7 @@
 		}
 	},
 	"resolutions": {
-		"**/**/minimist": "^0.2.1 || ^1.2.3"
+		"minimist": "^1.2.3"
 	},
 	"dependencies": {
 		"address": "^1.1.2",
@@ -43,7 +43,7 @@
 		"gradient-string": "^1.2.0",
 		"inquirer": "^7.1.0",
 		"js-yaml": "^3.13.1",
-		"make-dir": "^3.0.2",
+		"make-dir": "^3.1.0",
 		"meow": "^6.1.0",
 		"ora": "^4.0.4",
 		"update-notifier": "^4.1.0"
@@ -54,17 +54,17 @@
 		"dotenv": "^8.2.0",
 		"eslint": "^6.8.0",
 		"eslint-config-airbnb": "^18.1.0",
-		"eslint-config-iamnapo": "^3.0.0",
+		"eslint-config-iamnapo": "^3.1.0",
 		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
 		"eslint-plugin-react-hooks": "^3.0.0",
-		"eslint-plugin-unicorn": "^18.0.1",
+		"eslint-plugin-unicorn": "^19.0.1",
 		"husky": "^4.2.5",
 		"mathjs": "^6.6.4",
-		"moment": "^2.24.0",
-		"mongoose": "^5.9.10",
-		"pkg": "^4.4.7"
+		"moment": "^2.25.0",
+		"mongoose": "^5.9.11",
+		"pkg": "^4.4.8"
 	},
 	"engines": {
 		"node": ">=10"

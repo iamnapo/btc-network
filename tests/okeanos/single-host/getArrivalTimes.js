@@ -44,4 +44,4 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		}));
 		console.log(count);
 	}
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));
+})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.error(error));

@@ -42,4 +42,4 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		return e.save();
 	}));
 	console.log(count);
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((err) => console.log(err));
+})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.error(error));
