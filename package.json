@@ -23,7 +23,7 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "pkg . -t node14-linux-x64,node14-macos-x64,node14-win-x64 --out-path binaries",
+		"build": "pkg . -t node12-linux-x64,node12-macos-x64,node12-win-x64 --out-path binaries",
 		"start": "node ./bin/btc-network.js",
 		"test": "eslint ."
 	},
