@@ -1,2 +1,4 @@
 * text=auto eol=lf
 docker/bitcoin/* linguist-vendored
+lib/*.cpp linguist-vendored
+lib/*.h linguist-vendored

@@ -44,7 +44,7 @@
 		"inquirer": "^7.1.0",
 		"js-yaml": "^3.13.1",
 		"make-dir": "^3.1.0",
-		"meow": "^6.1.0",
+		"meow": "^6.1.1",
 		"ora": "^4.0.4",
 		"update-notifier": "^4.1.0"
 	},
@@ -58,12 +58,12 @@
 		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.19.0",
-		"eslint-plugin-react-hooks": "^3.0.0",
+		"eslint-plugin-react-hooks": "^4.0.0",
 		"eslint-plugin-unicorn": "^19.0.1",
 		"husky": "^4.2.5",
-		"mathjs": "^6.6.4",
-		"moment": "^2.25.0",
-		"mongoose": "^5.9.11",
+		"mathjs": "^6.6.5",
+		"moment": "^2.25.3",
+		"mongoose": "^5.9.12",
 		"pkg": "^4.4.8"
 	},
 	"engines": {
