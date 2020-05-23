@@ -33,9 +33,9 @@
 
 **_Note:_** If you want a one-liner to do all of the above:
 
-   ```sh
-   $ curl -o- https://raw.githubusercontent.com/iamnapo/btc-network/master/install.sh | bash
-   ```
+```sh
+$ curl -o- https://raw.githubusercontent.com/iamnapo/btc-network/master/install.sh | bash
+```
 
 **_Note:_** If you don't want to use node/npm, you can [download the corresponding binary](https://github.com/iamnapo/btc-network/releases/latest). Keep in mind that Docker is still required.
 
@@ -46,7 +46,3 @@
 ![Usage](./usage.gif)
 
 > `$ btc-network --help` for more info.
-
-## License
-
-MIT © [Napoleon-Christos Oikonomou](https://iamnapo.me)
