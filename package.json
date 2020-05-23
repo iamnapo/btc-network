@@ -38,36 +38,36 @@
 	"dependencies": {
 		"address": "^1.1.2",
 		"chalk": "^4.0.0",
-		"execa": "^4.0.0",
+		"execa": "^4.0.2",
 		"globby": "^11.0.0",
 		"gradient-string": "^1.2.0",
 		"inquirer": "^7.1.0",
-		"js-yaml": "^3.13.1",
+		"js-yaml": "^3.14.0",
 		"make-dir": "^3.1.0",
-		"meow": "^6.1.1",
+		"meow": "^7.0.1",
 		"ora": "^4.0.4",
 		"update-notifier": "^4.1.0"
 	},
 	"devDependencies": {
 		"bitcoin-core": "^3.0.0",
-		"chance": "^1.1.4",
+		"chance": "^1.1.5",
 		"dotenv": "^8.2.0",
-		"eslint": "^6.8.0",
+		"eslint": "^7.1.0",
 		"eslint-config-airbnb": "^18.1.0",
-		"eslint-config-iamnapo": "^3.1.0",
+		"eslint-config-iamnapo": "^4.0.0",
 		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
-		"eslint-plugin-react": "^7.19.0",
-		"eslint-plugin-react-hooks": "^4.0.0",
-		"eslint-plugin-unicorn": "^19.0.1",
+		"eslint-plugin-react": "^7.20.0",
+		"eslint-plugin-react-hooks": "^4.0.2",
+		"eslint-plugin-unicorn": "^20.0.0",
 		"husky": "^4.2.5",
-		"mathjs": "^6.6.5",
-		"moment": "^2.25.3",
-		"mongoose": "^5.9.12",
+		"mathjs": "^7.0.0",
+		"moment": "^2.26.0",
+		"mongoose": "^5.9.15",
 		"pkg": "^4.4.8"
 	},
 	"engines": {
-		"node": ">=10"
+		"node": ">=12"
 	},
 	"publishConfig": {
 		"access": "public"

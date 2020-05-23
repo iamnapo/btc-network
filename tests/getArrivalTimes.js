@@ -31,7 +31,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 			if (block) {
 				block.arrivedAfterMillis[arrivedAtNode] = Math.max(arrivedAt - block.minedAt, block.arrivedAfterMillis[arrivedAtNode] || 0);
 			}
-		} catch (error) {
+		} catch {
 			console.log(line);
 		}
 	});
