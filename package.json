@@ -25,7 +25,7 @@
 	"scripts": {
 		"build": "pkg . -t node12-linux-x64,node12-macos-x64,node12-win-x64 --out-path binaries",
 		"start": "node ./bin/btc-network.js",
-		"test": "eslint ."
+		"test": "eslint . --cache"
 	},
 	"husky": {
 		"hooks": {
@@ -39,7 +39,7 @@
 		"address": "^1.1.2",
 		"chalk": "^4.0.0",
 		"execa": "^4.0.2",
-		"globby": "^11.0.0",
+		"globby": "^11.0.1",
 		"gradient-string": "^1.2.0",
 		"inquirer": "^7.1.0",
 		"js-yaml": "^3.14.0",
@@ -50,20 +50,20 @@
 	},
 	"devDependencies": {
 		"bitcoin-core": "^3.0.0",
-		"chance": "^1.1.5",
+		"chance": "^1.1.6",
 		"dotenv": "^8.2.0",
 		"eslint": "^7.1.0",
 		"eslint-config-airbnb": "^18.1.0",
-		"eslint-config-iamnapo": "^4.0.0",
+		"eslint-config-iamnapo": "^5.0.0",
 		"eslint-plugin-import": "^2.20.2",
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.20.0",
-		"eslint-plugin-react-hooks": "^4.0.2",
-		"eslint-plugin-unicorn": "^20.0.0",
+		"eslint-plugin-react-hooks": "^4.0.4",
+		"eslint-plugin-unicorn": "^20.1.0",
 		"husky": "^4.2.5",
-		"mathjs": "^7.0.0",
+		"mathjs": "^7.0.1",
 		"moment": "^2.26.0",
-		"mongoose": "^5.9.15",
+		"mongoose": "^5.9.16",
 		"pkg": "^4.4.8"
 	},
 	"engines": {

@@ -1,6 +1,7 @@
+const { realpathSync } = require("fs");
+
 const inquirer = require("inquirer");
 const chalk = require("chalk");
-const { realpathSync } = require("fs");
 
 function isPositiveInteger(v) {
 	let i;

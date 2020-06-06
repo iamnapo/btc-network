@@ -1,9 +1,9 @@
 const path = require("path");
-const { existsSync, readFile, writeFile, realpathSync } = require("fs");
+const { existsSync, realpathSync } = require("fs");
+const { readFile, writeFile } = require("fs").promises;
+
 const chalk = require("chalk");
 const ora = require("ora");
-const readFileAsync = require("util").promisify(readFile);
-const writeFileAsync = require("util").promisify(writeFile);
 const makeDir = require("make-dir");
 const yaml = require("js-yaml");
 const execa = require("execa");
@@ -22,7 +22,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 			const spinner = ora().start(`Starting \`btc-node-${node}\``);
 			try {
 				await execa("docker-compose", ["-f", composeFile, "up", "-d"]);
-				const composeFileContent = await readFileAsync(composeFile);
+				const composeFileContent = await readFile(composeFile);
 				const { services: { "btc-node": { ports } } } = yaml.safeLoad(composeFileContent);
 				spinner.succeed(`Node btc-node-${node} started! You can now access it.`);
 				const lanIp = ip();
@@ -66,7 +66,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 	}
 	const spinner = ora().start("Starting creating files!");
 	const filePath = realpathSync(input);
-	const nodeInfo = JSON.parse(await readFileAsync(filePath, "utf8"));
+	const nodeInfo = JSON.parse(await readFile(filePath, "utf8"));
 	if (!existsSync(output)) spinner.succeed(`Created \`${output}\`.`);
 	const outputDir = await makeDir(output);
 	let shouldAddImage = true;
@@ -78,14 +78,14 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		} catch (error) {
 			return console.log(`\n${chalk.red.bold(`Couldn’t locate ${error.path}. 😕`)}\n`);
 		}
-		const userConfig = JSON.parse(await readFileAsync(realpathSync(config), "utf8"));
+		const userConfig = JSON.parse(await readFile(realpathSync(config), "utf8"));
 		const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);
-		const dockerfile = await readFileAsync(path.join(__dirname, "../lib/Dockerfile"), "utf8");
+		const dockerfile = await readFile(path.join(__dirname, "../lib/Dockerfile"), "utf8");
 		for (const [i] of nodeInfo.entries()) {
 			const outDir = await makeDir(path.join(output, `btc-node-${i + 1}`));
-			await writeFileAsync(path.join(outDir, "consensus.h"), consensusHFile);
-			await writeFileAsync(path.join(outDir, "chainparams.cpp"), chainparamsCPPFile);
-			await writeFileAsync(path.join(outDir, "Dockerfile"), dockerfile);
+			await writeFile(path.join(outDir, "consensus.h"), consensusHFile);
+			await writeFile(path.join(outDir, "chainparams.cpp"), chainparamsCPPFile);
+			await writeFile(path.join(outDir, "Dockerfile"), dockerfile);
 		}
 		shouldAddImage = false;
 		spinner.succeed("Created custom `consensus.h` and `chainparams.cpp`.");
@@ -114,7 +114,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		};
 
 		const outDir = await makeDir(path.join(output, `btc-node-${i + 1}`));
-		await writeFileAsync(path.join(outDir, "docker-compose.yml"), yaml.safeDump(compose));
+		await writeFile(path.join(outDir, "docker-compose.yml"), yaml.safeDump(compose));
 		await makeDir(path.join(output, `btc-node-${i + 1}`, "data", "btc-node"));
 		spinner.succeed(`Created btc-node-${i + 1}.`);
 	}

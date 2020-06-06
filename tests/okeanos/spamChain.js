@@ -3,8 +3,9 @@ const Client = require("bitcoin-core");
 const Chance = require("chance");
 const mongoose = require("mongoose");
 
-const createTxs = require("./createTxs");
 const Block = require("../models/Block");
+
+const createTxs = require("./createTxs");
 
 const chance = new Chance();
 const NODES = [

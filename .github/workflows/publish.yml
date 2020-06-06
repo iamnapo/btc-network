@@ -15,8 +15,6 @@ jobs:
           node-version: 14
       - run: yarn
       - run: yarn test
-        env:
-          CI: true
       - run: yarn build
 
   publish:
