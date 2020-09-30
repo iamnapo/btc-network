@@ -31,7 +31,7 @@ module.exports = async () => {
 			},
 		},
 	);
-	updateNotifier({ pkg: cli.pkg, shouldNotifyInNpmScript: true, updateCheckInterval: 0 }).notify();
+	updateNotifier({ pkg: cli.pkg, updateCheckInterval: 0 }).notify();
 
 	const { input, output, image, run, stop, config } = cli.flags;
 	return { input, output, image, run, stop, config };

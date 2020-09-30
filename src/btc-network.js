@@ -9,13 +9,14 @@ const yaml = require("js-yaml");
 const execa = require("execa");
 const { ip } = require("address");
 const globby = require("globby");
+const { numberSmallToLarge } = require("@iamnapo/sort");
 
 const parse = require("../lib/parse");
 
 module.exports = async ({ input, output, run, image, config, stop }) => {
 	if (run) {
 		const fld = await globby(path.posix.join(output, `btc-node-${run === "*" ? "+([0-9])" : run}`), { expandDirectories: false, onlyFiles: false });
-		const nodes = fld.map((p) => Number.parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
+		const nodes = fld.map((p) => Number.parseInt(p.split("-").slice(-1), 10)).sort(numberSmallToLarge());
 		for (const node of nodes) {
 			const composeFile = path.join(output, `btc-node-${node}`, "docker-compose.yml");
 			if (!existsSync(composeFile)) return console.log(`\n${chalk.red.bold(`Couldn’t locate ${composeFile}. 😕`)}\n`);
