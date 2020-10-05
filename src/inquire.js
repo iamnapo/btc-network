@@ -4,8 +4,8 @@ const inquirer = require("inquirer");
 const chalk = require("chalk");
 
 function isPositiveInteger(v) {
-	let i;
-	return v && (i = Number.parseInt(v, 10)) && i > 0 && (i === v || `${i}` === v);
+	const i = Number(v);
+	return Number.isInteger(i) && i > 0;
 }
 
 module.exports = async () => {
