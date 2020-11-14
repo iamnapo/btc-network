@@ -19,8 +19,8 @@ function getIntro(columns) {
 }
 
 (async () => {
-	const argInfo = await checkArgs();
-	const options = [argInfo.input, argInfo.run, argInfo.stop].some((_) => !!_) ? argInfo : {
+	const argInfo = checkArgs();
+	const options = [argInfo.input, argInfo.run, argInfo.stop].some(Boolean) ? argInfo : {
 		...argInfo,
 		...(await (() => {
 			console.log(getIntro(process.stdout.columns));

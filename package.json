@@ -29,7 +29,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn test"
+			"pre-commit": "npm test"
 		}
 	},
 	"resolutions": {
@@ -40,28 +40,28 @@
 		"@iamnapo/sort": "^1.0.2",
 		"address": "^1.1.2",
 		"chalk": "^4.1.0",
-		"execa": "^4.0.3",
+		"execa": "^4.1.0",
 		"globby": "^11.0.1",
 		"gradient-string": "^1.2.0",
 		"inquirer": "^7.3.3",
 		"js-yaml": "^3.14.0",
 		"make-dir": "^3.1.0",
-		"meow": "^7.1.1",
+		"meow": "^8.0.0",
 		"ora": "^5.1.0",
-		"update-notifier": "^5.0.0"
+		"update-notifier": "^5.0.1"
 	},
 	"devDependencies": {
 		"bitcoin-core": "^3.0.0",
 		"chance": "^1.1.7",
 		"dotenv": "^8.2.0",
-		"eslint": "^7.10.0",
-		"eslint-config-iamnapo": "^9.0.0",
+		"eslint": "^7.13.0",
+		"eslint-config-iamnapo": "^10.1.0",
 		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-unicorn": "^22.0.0",
+		"eslint-plugin-unicorn": "^23.0.0",
 		"husky": "^4.3.0",
-		"mathjs": "^7.3.0",
-		"moment": "^2.29.0",
-		"mongoose": "^5.10.7",
+		"mathjs": "^8.0.1",
+		"moment": "^2.29.1",
+		"mongoose": "^5.10.14",
 		"pkg": "^4.4.9"
 	},
 	"engines": {

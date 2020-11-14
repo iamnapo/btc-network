@@ -1,7 +1,7 @@
 const meow = require("meow");
 const updateNotifier = require("update-notifier");
 
-module.exports = async () => {
+module.exports = () => {
 	const cli = meow(
 		`
   Usage

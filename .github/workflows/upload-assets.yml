@@ -12,9 +12,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: yarn
-      - run: yarn test
-      - run: yarn build
+      - run: npm i
+      - run: npm test
+      - run: npm run build
       - uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
