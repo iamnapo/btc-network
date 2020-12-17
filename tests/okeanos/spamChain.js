@@ -59,7 +59,7 @@ const mongooseOptions = {
 	useFindAndModify: false,
 	poolSize: 100,
 	keepAlive: true,
-	keepAliveInitialDelay: 300000,
+	keepAliveInitialDelay: 300_000,
 	useUnifiedTopology: true,
 };
 
@@ -69,7 +69,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 	for (let i = 0; i < 200; i += 1) {
 		const { txCreator } = await createTxs();
 		const blockCreator = chance.pickone(NODES);
-		const client = new Client({ host: blockCreator, port: 18401, username: "btc", password: "btc" });
+		const client = new Client({ host: blockCreator, port: 18_401, username: "btc", password: "btc" });
 
 		const startTime = process.hrtime();
 		const [blockHash] = await client.generateToAddress(1, ADDRESSES[NODES.indexOf(txCreator)]);

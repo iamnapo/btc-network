@@ -13,7 +13,7 @@ const mongooseOptions = {
 	useFindAndModify: false,
 	poolSize: 100,
 	keepAlive: true,
-	keepAliveInitialDelay: 300000,
+	keepAliveInitialDelay: 300_000,
 	useUnifiedTopology: true,
 };
 

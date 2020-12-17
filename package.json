@@ -55,13 +55,13 @@
 		"chance": "^1.1.7",
 		"dotenv": "^8.2.0",
 		"eslint": "^7.15.0",
-		"eslint-config-iamnapo": "^10.2.0",
+		"eslint-config-iamnapo": "^11.0.0",
 		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-unicorn": "^23.0.0",
-		"husky": "^4.3.5",
+		"eslint-plugin-unicorn": "^24.0.0",
+		"husky": "^4.3.6",
 		"mathjs": "^8.1.0",
 		"moment": "^2.29.1",
-		"mongoose": "^5.11.7",
+		"mongoose": "^5.11.8",
 		"pkg": "^4.4.9"
 	},
 	"engines": {

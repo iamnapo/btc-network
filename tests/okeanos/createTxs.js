@@ -52,12 +52,12 @@ module.exports = async () => {
 	const txCreator = chance.pickone(NODES);
 	const numOfTxs = chance.integer({ min: 1, max: 50 });
 	const receiverAddr = chance.pickone(ADDRESSES);
-	const client = new Client({ host: txCreator, port: 18401, username: "btc", password: "btc", version: "0.18.0" });
+	const client = new Client({ host: txCreator, port: 18_401, username: "btc", password: "btc", version: "0.18.0" });
 	const numOfBatches = Math.trunc(numOfTxs / 16);
 
 	const startTime = process.hrtime();
 	for (let i = 0; i < numOfBatches; i += 1) {
-		await Promise.all([...new Array(16)].map(() => client.sendToAddress(receiverAddr, 0.00006)));
+		await Promise.all([...new Array(16)].map(() => client.sendToAddress(receiverAddr, 0.000_06)));
 	}
 	const endTime = process.hrtime(startTime);
 	const millisToCreateTxs = ((endTime[0] * 1e9) + endTime[1]) / 1e6;

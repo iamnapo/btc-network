@@ -9,15 +9,15 @@ const createTxs = require("./createTxs");
 
 const chance = new Chance();
 const NODES = [
-	18401,
-	18402,
-	18403,
-	18404,
-	18405,
-	18406,
-	18407,
-	18408,
-	18409,
+	18_401,
+	18_402,
+	18_403,
+	18_404,
+	18_405,
+	18_406,
+	18_407,
+	18_408,
+	18_409,
 ];
 const ADDRESSES = [
 	"2N2ehpH3BqLgAHq9tmiY8Ua5ej3wdzgk7SL",
@@ -37,7 +37,7 @@ const mongooseOptions = {
 	useFindAndModify: false,
 	poolSize: 100,
 	keepAlive: true,
-	keepAliveInitialDelay: 300000,
+	keepAliveInitialDelay: 300_000,
 	useUnifiedTopology: true,
 };
 

@@ -7,7 +7,7 @@ const createTxs = require("./createTxs");
 const Block = require("./models/Block");
 
 const chance = new Chance();
-const NODES_PORTS = [18401, 18402, 18403, 18404];
+const NODES_PORTS = [18_401, 18_402, 18_403, 18_404];
 const ADDRESSES = [
 	"2N5TFopmSQ7C4UVsBJEnBoToZKtrRoUyXs7",
 	"2NDckBMqJLRyWuVB2vnutAJSczCFUVN3tRv",
@@ -21,7 +21,7 @@ const mongooseOptions = {
 	useFindAndModify: false,
 	poolSize: 100,
 	keepAlive: true,
-	keepAliveInitialDelay: 300000,
+	keepAliveInitialDelay: 300_000,
 	useUnifiedTopology: true,
 };
 

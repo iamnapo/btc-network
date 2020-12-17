@@ -3,7 +3,7 @@ const Chance = require("chance");
 
 const chance = new Chance();
 
-const NODES_PORTS = [18401, 18402, 18403, 18404];
+const NODES_PORTS = [18_401, 18_402, 18_403, 18_404];
 const ADDRESSES = [
 	"2N5TFopmSQ7C4UVsBJEnBoToZKtrRoUyXs7",
 	"2NDckBMqJLRyWuVB2vnutAJSczCFUVN3tRv",
@@ -20,7 +20,7 @@ module.exports = async () => {
 
 	const startTime = process.hrtime();
 	for (let i = 0; i < numOfBatches; i += 1) {
-		await Promise.all([...new Array(16)].map(() => client.sendToAddress(receiverAddr, 0.00006)));
+		await Promise.all([...new Array(16)].map(() => client.sendToAddress(receiverAddr, 0.000_06)));
 	}
 	const endTime = process.hrtime(startTime);
 	const millisToCreateTxs = ((endTime[0] * 1e9) + endTime[1]) / 1e6;
