@@ -24,7 +24,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 			try {
 				await execa("docker-compose", ["-f", composeFile, "up", "-d"]);
 				const composeFileContent = await readFile(composeFile);
-				const { services: { "btc-node": { ports } } } = yaml.safeLoad(composeFileContent);
+				const { services: { "btc-node": { ports } } } = yaml.load(composeFileContent);
 				spinner.succeed(`Node btc-node-${node} started! You can now access it.`);
 				const lanIp = ip();
 				console.log(`\n${chalk.green.bold(`  On this machine:${"\n"
@@ -115,7 +115,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 		};
 
 		const outDir = await makeDir(path.join(output, `btc-node-${i + 1}`));
-		await writeFile(path.join(outDir, "docker-compose.yml"), yaml.safeDump(compose));
+		await writeFile(path.join(outDir, "docker-compose.yml"), yaml.dump(compose));
 		await makeDir(path.join(output, `btc-node-${i + 1}`, "data", "btc-node"));
 		spinner.succeed(`Created btc-node-${i + 1}.`);
 	}
