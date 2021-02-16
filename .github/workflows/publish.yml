@@ -43,6 +43,9 @@ jobs:
             ghcr.io/iamnapo/btc-network:latest
             ghcr.io/iamnapo/btc-network:${{ github.event.release.tag_name }}
 
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+
       - name: 🏗 Build binaries
         run: npm run build
 
