@@ -1,5 +1,5 @@
-const Client = require("bitcoin-core");
-const Chance = require("chance");
+import Client from "bitcoin-core";
+import Chance from "chance";
 
 const chance = new Chance();
 
@@ -48,7 +48,7 @@ const ADDRESSES = [
 	"2NDiiK92ddFuGcDRuEcZ9nYUZ19KMBnMEAx",
 ];
 
-module.exports = async () => {
+export default async () => {
 	const txCreator = chance.pickone(NODES);
 	const numOfTxs = chance.integer({ min: 1, max: 50 });
 	const receiverAddr = chance.pickone(ADDRESSES);

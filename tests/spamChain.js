@@ -1,10 +1,11 @@
-require("dotenv").config();
-const Client = require("bitcoin-core");
-const Chance = require("chance");
-const mongoose = require("mongoose");
+import "dotenv/config.js";
 
-const createTxs = require("./createTxs");
-const Block = require("./models/Block");
+import Client from "bitcoin-core";
+import Chance from "chance";
+import mongoose from "mongoose";
+
+import Block from "./models/Block.js";
+import createTxs from "./createTxs.js";
 
 const chance = new Chance();
 const NODES_PORTS = [18_401, 18_402, 18_403, 18_404];

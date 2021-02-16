@@ -1,19 +1,19 @@
-const path = require("path");
-const { existsSync, realpathSync } = require("fs");
-const { readFile, writeFile } = require("fs").promises;
+import path from "path";
+import { existsSync, realpathSync } from "fs";
+import { readFile, writeFile } from "fs/promises";
 
-const chalk = require("chalk");
-const ora = require("ora");
-const makeDir = require("make-dir");
-const yaml = require("js-yaml");
-const execa = require("execa");
-const { ip } = require("address");
-const globby = require("globby");
-const { numberSmallToLarge } = require("@iamnapo/sort");
+import chalk from "chalk";
+import ora from "ora";
+import makeDir from "make-dir";
+import yaml from "js-yaml";
+import execa from "execa";
+import address from "address";
+import globby from "globby";
+import { numberSmallToLarge } from "@iamnapo/sort";
 
-const parse = require("../lib/parse");
+import parse from "../lib/parse.js";
 
-module.exports = async ({ input, output, run, image, config, stop }) => {
+export default async ({ input, output, run, image, config, stop }) => {
 	if (run) {
 		const fld = await globby(path.posix.join(output, `btc-node-${run === "*" ? "+([0-9])" : run}`), { expandDirectories: false, onlyFiles: false });
 		const nodes = fld.map((p) => Number.parseInt(p.split("-").slice(-1), 10)).sort(numberSmallToLarge());
@@ -26,7 +26,7 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 				const composeFileContent = await readFile(composeFile);
 				const { services: { "btc-node": { ports } } } = yaml.load(composeFileContent);
 				spinner.succeed(`Node btc-node-${node} started! You can now access it.`);
-				const lanIp = ip();
+				const lanIp = address.ip();
 				console.log(`\n${chalk.green.bold(`  On this machine:${"\n"
 				}    JSON-RPC: localhost:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
 				}    P2P: localhost:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
@@ -109,7 +109,8 @@ module.exports = async ({ input, output, run, image, config, stop }) => {
 					command: [
 						"-conf=/root/.bitcoin/bitcoin.conf",
 						"-datadir=/root/btc-node",
-					].concat(...nodeInfo.filter((e, ind) => ind !== i).map(((otherNode) => `-addnode=${otherNode.ip}:${otherNode.p2p_port}`))),
+						...nodeInfo.filter((e, ind) => ind !== i).map(((otherNode) => `-addnode=${otherNode.ip}:${otherNode.p2p_port}`)),
+					],
 				},
 			},
 		};

@@ -1,11 +1,12 @@
-require("dotenv").config();
-const fs = require("fs");
-const path = require("path");
+import "dotenv/config.js";
 
-const mongoose = require("mongoose");
-const moment = require("moment");
+import path from "path";
+import { readFileSync } from "fs";
 
-const Block = require("./models/Block");
+import moment from "moment";
+import mongoose from "mongoose";
+
+import Block from "./models/Block.js";
 
 const mongooseOptions = {
 	useNewUrlParser: true,
@@ -20,10 +21,10 @@ const mongooseOptions = {
 mongoose.connect(process.env.DB_URI, mongooseOptions);
 
 (async () => {
-	const logFile = fs.readFileSync(path.join(__dirname, "./logs.txt"), "utf8").split("\n");
+	const logFile = readFileSync(path.join(__dirname, "./logs.txt"), "utf8").split("\n");
 	const blocks = await Block.find().exec();
 	// const blocks = await Block.deleteMany({ $where: "this.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length === 1" }).exec();
-	logFile.forEach((line) => {
+	for (const line of logFile) {
 		try {
 			const blockHash = line.match(/best=(\w.*(?= h))/)[1];
 			const arrivedAtNode = Number.parseInt(line.match(/^node(\d.*(?=_1))/)[1] - 1, 10);
@@ -35,7 +36,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		} catch {
 			console.log(line);
 		}
-	});
+	}
 	let count = 0;
 	await Promise.all(blocks.map((e) => {
 		if (e.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length !== 4) count += 1;

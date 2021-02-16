@@ -1,7 +1,0 @@
-{
-	"extends": "iamnapo",
-	"rules": {
-		"no-bitwise": "off",
-		"unicorn/no-process-exit": "off"
-	}
-}

@@ -1,11 +1,11 @@
-const chalk = require("chalk");
-const gradient = require("gradient-string");
+import chalk from "chalk";
+import gradient from "gradient-string";
 
-const checkArgs = require("./args");
-const inquire = require("./inquire");
-const btcNetwork = require("./btc-network");
+import checkArgs from "./args.js";
+import inquire from "./inquire.js";
+import btcNetwork from "./btc-network.js";
 
-function getIntro(columns) {
+const getIntro = (columns) => {
 	const ascii = `
   ___.    __                                  __                       __
   \\_ |___/  |_  ____             ____   _____/  |___  _  _____________|  | __
@@ -16,7 +16,7 @@ function getIntro(columns) {
     `;
 	if (columns && columns >= 74) return chalk.bold(gradient.mind(ascii));
 	return `\n${chalk.cyan.bold.underline("btc-network")}\n`;
-}
+};
 
 (async () => {
 	const argInfo = checkArgs();

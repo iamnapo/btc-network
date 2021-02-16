@@ -1,7 +1,7 @@
-const meow = require("meow");
-const updateNotifier = require("update-notifier");
+import meow from "meow";
+import updateNotifier from "update-notifier";
 
-module.exports = () => {
+export default () => {
 	const cli = meow(
 		`
   Usage

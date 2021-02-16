@@ -1,14 +1,14 @@
-const { realpathSync } = require("fs");
+import { realpathSync } from "fs";
 
-const inquirer = require("inquirer");
-const chalk = require("chalk");
+import inquirer from "inquirer";
+import chalk from "chalk";
 
-function isPositiveInteger(v) {
+const isPositiveInteger = (v) => {
 	const i = Number(v);
 	return Number.isInteger(i) && i > 0;
-}
+};
 
-module.exports = async () => {
+export default async () => {
 	const usagePrompt = {
 		choices: ["Create required docker-compose files", "Run pre-existing nodes", "Stop running nodes"],
 		message: "💭\u{200D} What would you like to do?",

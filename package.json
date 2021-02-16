@@ -13,7 +13,8 @@
 		"email": "Napoleonoikon@gmail.com",
 		"url": "https://iamnapo.me"
 	},
-	"main": "./bin/btc-network.js",
+	"type": "module",
+	"exports": "./bin/btc-network.js",
 	"bin": {
 		"btc-network": "bin/btc-network.js"
 	},
@@ -23,13 +24,15 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "pkg . -t node12-linux-x64,node12-macos-x64,node12-win-x64 --out-path binaries",
+		"build": "pkg . -t node14-linux-x64,node14-macos-x64,node14-win-x64 --out-path binaries",
 		"start": "node ./bin/btc-network.js",
 		"test": "eslint . --cache"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm test"
+	"eslintConfig": {
+		"extends": "iamnapo",
+		"rules": {
+			"no-bitwise": "off",
+			"unicorn/no-process-exit": "off"
 		}
 	},
 	"resolutions": {
@@ -37,7 +40,7 @@
 		"minimist": "^1.2.3"
 	},
 	"dependencies": {
-		"@iamnapo/sort": "^1.0.2",
+		"@iamnapo/sort": "^2.0.0",
 		"address": "^1.1.2",
 		"chalk": "^4.1.0",
 		"execa": "^5.0.0",
@@ -47,25 +50,24 @@
 		"js-yaml": "^4.0.0",
 		"make-dir": "^3.1.0",
 		"meow": "^9.0.0",
-		"ora": "^5.2.0",
-		"update-notifier": "^5.0.1"
+		"ora": "^5.3.0",
+		"update-notifier": "^5.1.0"
 	},
 	"devDependencies": {
 		"bitcoin-core": "^3.0.0",
 		"chance": "^1.1.7",
 		"dotenv": "^8.2.0",
-		"eslint": "^7.17.0",
+		"eslint": "^7.20.0",
 		"eslint-config-iamnapo": "^12.0.0",
 		"eslint-plugin-import": "^2.22.1",
-		"eslint-plugin-unicorn": "^26.0.0",
-		"husky": "^4.3.7",
-		"mathjs": "^8.1.1",
+		"eslint-plugin-unicorn": "^28.0.1",
+		"mathjs": "^9.2.0",
 		"moment": "^2.29.1",
-		"mongoose": "^5.11.11",
+		"mongoose": "^5.11.16",
 		"pkg": "^4.4.9"
 	},
 	"engines": {
-		"node": ">=12"
+		"node": ">=14"
 	},
 	"publishConfig": {
 		"access": "public"
