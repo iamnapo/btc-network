@@ -1,9 +1,9 @@
-import "dotenv/config.js";
+import "dotenv/config";
 
 import mongoose from "mongoose";
 import mathjs from "mathjs";
 
-import Block from "./models/Block.js";
+import Block from "../../models/block.js";
 
 const mongooseOptions = {
 	useNewUrlParser: true,

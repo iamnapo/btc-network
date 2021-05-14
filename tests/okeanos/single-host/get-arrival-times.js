@@ -1,12 +1,12 @@
-import "dotenv/config.js";
+import "dotenv/config";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { readFileSync } from "node:fs";
 
-import path from "path";
-import { readFileSync } from "fs";
-
-import moment from "moment";
 import mongoose from "mongoose";
+import moment from "moment";
 
-import Block from "../models/Block.js";
+import Block from "../../models/block.js";
 
 const mongooseOptions = {
 	useNewUrlParser: true,
@@ -21,18 +21,23 @@ const mongooseOptions = {
 mongoose.connect(process.env.DB_URI, mongooseOptions);
 
 (async () => {
-	for (const i of Array.from({ length: 20 }).keys()) {
-		const logFile = readFileSync(path.join(__dirname, "logs", `./logs${i + 1}.txt`), "utf8").split("\n");
+	for (let i = 0; i < 1; i += 1) {
+		const logFile = readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "logs", `./logs${i + 1}.txt`), "utf8").split("\n");
 		const blocks = await Block.find().exec();
-		// const blocks = await Block.deleteMany({ $where: "this.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length === 1" }).exec();
+		// const blocks = await Block.deleteMany({
+		// 	$where: "this.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length === 1",
+		// }).exec();
 		for (const line of logFile) {
 			try {
 				const blockHash = line.match(/best=(\w.*(?= h))/)[1];
-				const arrivedAtNode = i + 1;
+				const arrivedAtNode = Number.parseInt(line.match(/^node(\d.*(?=_1))/)[1] - 1, 10);
 				const arrivedAt = moment(line.match(/\| (\w.*?(?= ))/)[1]).valueOf();
 				const block = blocks.find((e) => e.blockHash === blockHash);
 				if (block) {
-					block.arrivedAfterMillis[arrivedAtNode] = Math.max(arrivedAt - block.minedAt, block.arrivedAfterMillis[arrivedAtNode] || 0);
+					block.arrivedAfterMillis[arrivedAtNode] = Math.max(
+						arrivedAt - block.minedAt,
+						block.arrivedAfterMillis[arrivedAtNode] || 0,
+					);
 				}
 			} catch {
 				console.log(line);
@@ -40,7 +45,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		}
 		let count = 0;
 		await Promise.all(blocks.map((e) => {
-			if (e.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length !== i + 1) count += 1;
+			if (e.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length !== 9) count += 1;
 			e.markModified("arrivedAfterMillis");
 			return e.save();
 		}));

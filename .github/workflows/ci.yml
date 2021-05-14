@@ -12,10 +12,10 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
 
       - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
+        run: npm ci --legacy-peer-deps
 
       - name: 🧪 Run test script
         run: npm test

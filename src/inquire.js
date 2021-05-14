@@ -1,4 +1,4 @@
-import { realpathSync } from "fs";
+import { realpathSync } from "node:fs";
 
 import inquirer from "inquirer";
 import chalk from "chalk";

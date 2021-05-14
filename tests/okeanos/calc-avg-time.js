@@ -1,9 +1,9 @@
-import "dotenv/config.js";
+import "dotenv/config";
 
 import mongoose from "mongoose";
 import mathjs from "mathjs";
 
-import Block from "../models/Block.js";
+import Block from "../models/block.js";
 
 const mongooseOptions = {
 	useNewUrlParser: true,
@@ -20,7 +20,9 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 (async () => {
 	const blocks = await Block.find().exec();
 	const blockAverages = [];
-	for (const block of blocks) blockAverages.push(mathjs.mean([0, ...block.arrivedAfterMillis.filter((e) => Number.isFinite(e))]) / 1000);
+	for (const block of blocks) {
+		blockAverages.push(mathjs.mean([0, ...block.arrivedAfterMillis.filter((e) => Number.isFinite(e))]) / 1000);
+	}
 	const allTimes = blocks.reduce((all, cur) => [...all, cur.arrivedAfterMillis], []).filter((e) => Number.isFinite(e) && e > 0);
 	console.log(`Min: ${mathjs.min(allTimes)}`);
 	console.log(`Max: ${mathjs.max(allTimes)}`);

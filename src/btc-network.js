@@ -1,6 +1,6 @@
-import path from "path";
-import { existsSync, realpathSync } from "fs";
-import { readFile, writeFile } from "fs/promises";
+import path from "node:path";
+import { existsSync, realpathSync } from "node:fs";
+import { readFile, writeFile } from "node:fs/promises";
 
 import chalk from "chalk";
 import ora from "ora";
@@ -81,7 +81,7 @@ export default async ({ input, output, run, image, config, stop }) => {
 		}
 		const userConfig = JSON.parse(await readFile(realpathSync(config), "utf8"));
 		const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);
-		const dockerfile = await readFile(path.join(__dirname, "../lib/Dockerfile"), "utf8");
+		const dockerfile = await readFile(new URL("../lib/Dockerfile", import.meta.url), "utf8");
 		for (const [i] of nodeInfo.entries()) {
 			const outDir = await makeDir(path.join(output, `btc-node-${i + 1}`));
 			await writeFile(path.join(outDir, "consensus.h"), consensusHFile);

@@ -1,12 +1,12 @@
-import "dotenv/config.js";
+import "dotenv/config";
 
 import Client from "bitcoin-core";
 import Chance from "chance";
 import mongoose from "mongoose";
 
-import Block from "../models/Block.js";
+import Block from "../models/block.js";
 
-import createTxs from "./createTxs.js";
+import createTxs from "./create-txs.js";
 
 const chance = new Chance();
 const NODES = [
