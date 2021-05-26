@@ -42,7 +42,7 @@
 		"execa": "^5.0.0",
 		"globby": "^11.0.3",
 		"gradient-string": "^1.2.0",
-		"inquirer": "^8.0.0",
+		"inquirer": "^8.1.0",
 		"js-yaml": "^4.1.0",
 		"make-dir": "^3.1.0",
 		"meow": "^10.0.0",
@@ -52,16 +52,16 @@
 	"devDependencies": {
 		"bitcoin-core": "^3.0.0",
 		"chance": "^1.1.7",
-		"dotenv": "^9.0.2",
-		"eslint": "^7.26.0",
+		"dotenv": "^10.0.0",
+		"eslint": "^7.27.0",
 		"eslint-config-iamnapo": "^15.0.0",
-		"eslint-plugin-import": "^2.23.0",
+		"eslint-plugin-import": "^2.23.3",
 		"eslint-plugin-unicorn": "^32.0.1",
 		"json-bigint": "^1.0.0",
-		"mathjs": "^9.3.2",
+		"mathjs": "^9.4.1",
 		"moment": "^2.29.1",
-		"mongoose": "^5.12.9",
-		"pkg": "^5.1.0"
+		"mongoose": "^5.12.11",
+		"pkg": "^5.2.1"
 	},
 	"engines": {
 		"node": ">=14"
