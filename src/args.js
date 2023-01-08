@@ -1,7 +1,11 @@
+import { readFileSync } from "node:fs";
+
 import meow from "meow";
 import updateNotifier from "update-notifier";
 
-export default () => {
+const packageJson = JSON.parse(readFileSync("package.json", "utf8"));
+
+const args = () => {
 	const cli = meow(
 		`
   Usage
@@ -29,10 +33,13 @@ export default () => {
 				stop: { alias: "s", type: "string" },
 				config: { alias: "c", type: "string" },
 			},
+			importMeta: { url: import.meta.url },
 		},
 	);
-	updateNotifier({ pkg: cli.pkg, updateCheckInterval: 0 }).notify();
+	updateNotifier({ pkg: packageJson, updateCheckInterval: 0 }).notify();
 
 	const { input, output, image, run, stop, config } = cli.flags;
 	return { input, output, image, run, stop, config };
 };
+
+export default args;

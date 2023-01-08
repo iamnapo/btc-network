@@ -6,14 +6,14 @@ import chalk from "chalk";
 import ora from "ora";
 import makeDir from "make-dir";
 import yaml from "js-yaml";
-import execa from "execa";
+import { execa } from "execa";
 import address from "address";
-import globby from "globby";
+import { globby } from "globby";
 import { numberSmallToLarge } from "@iamnapo/sort";
 
 import parse from "../lib/parse.js";
 
-export default async ({ input, output, run, image, config, stop }) => {
+const btcNetwork = async ({ input, output, run, image, config, stop }) => {
 	if (run) {
 		const fld = await globby(path.posix.join(output, `btc-node-${run === "*" ? "+([0-9])" : run}`), { expandDirectories: false, onlyFiles: false });
 		const nodes = fld.map((p) => Number.parseInt(p.split("-").slice(-1), 10)).sort(numberSmallToLarge());
@@ -36,6 +36,7 @@ export default async ({ input, output, run, image, config, stop }) => {
 					}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
 					}    P2P: ${lanIp}:${ports.find((e) => e.includes("18444")).split(":")[0]}`)}\n`);
 				}
+
 				if (/\b(?!(10)|192\.168|172\.(2\d|1[6-9]|3[0-2]))(?:\d{1,3}\.){3}\d{1,3}/.test(lanIp)) {
 					console.log(`${chalk.green.bold(`  Publicly (if this machine is accessible):${"\n"
 					}    JSON-RPC: ${lanIp}:${ports.find((e) => e.includes("18443")).split(":")[0]}${"\n"
@@ -46,8 +47,10 @@ export default async ({ input, output, run, image, config, stop }) => {
 				spinner.fail("Couldn’t start node. 😕");
 			}
 		}
+
 		return null;
 	}
+
 	if (stop) {
 		const fld = await globby(path.posix.join(output, `btc-node-${stop === "*" ? "+([0-9])" : stop}`), { expandDirectories: false, onlyFiles: false });
 		const nodes = fld.map((p) => Number.parseInt(p.split("-").slice(-1), 10)).sort((a, b) => a - b);
@@ -63,8 +66,10 @@ export default async ({ input, output, run, image, config, stop }) => {
 				spinner.fail("Couldn’t stop node. 😕");
 			}
 		}
+
 		return null;
 	}
+
 	const spinner = ora().start("Starting creating files!");
 	const filePath = realpathSync(input);
 	const nodeInfo = JSON.parse(await readFile(filePath, "utf8"));
@@ -79,6 +84,7 @@ export default async ({ input, output, run, image, config, stop }) => {
 		} catch (error) {
 			return console.log(`\n${chalk.red.bold(`Couldn’t locate ${error.path}. 😕`)}\n`);
 		}
+
 		const userConfig = JSON.parse(await readFile(realpathSync(config), "utf8"));
 		const { consensusHFile, chainparamsCPPFile } = await parse(userConfig);
 		const dockerfile = await readFile(new URL("../lib/Dockerfile", import.meta.url), "utf8");
@@ -88,6 +94,7 @@ export default async ({ input, output, run, image, config, stop }) => {
 			await writeFile(path.join(outDir, "chainparams.cpp"), chainparamsCPPFile);
 			await writeFile(path.join(outDir, "Dockerfile"), dockerfile);
 		}
+
 		shouldAddImage = false;
 		spinner.succeed("Created custom `consensus.h` and `chainparams.cpp`.");
 	}
@@ -120,5 +127,8 @@ export default async ({ input, output, run, image, config, stop }) => {
 		await makeDir(path.join(output, `btc-node-${i + 1}`, "data", "btc-node"));
 		spinner.succeed(`Created btc-node-${i + 1}.`);
 	}
+
 	return console.log(`\n${chalk.blue.bold(`Created all files into ${outputDir}. 🎉`)}\n`);
 };
+
+export default btcNetwork;

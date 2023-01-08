@@ -8,7 +8,7 @@ const isPositiveInteger = (v) => {
 	return Number.isInteger(i) && i > 0;
 };
 
-export default async () => {
+const inquire = async () => {
 	const usagePrompt = {
 		choices: ["Create required docker-compose files", "Run pre-existing nodes", "Stop running nodes"],
 		message: "💭\u{200D} What would you like to do?",
@@ -101,6 +101,9 @@ export default async () => {
 		answers = { ...answers, ...(await inquirer.prompt(outputFolderCreateQuestion)) };
 		return answers;
 	}
+
 	const answers = await inquirer.prompt([outputFolderFindQuestion, nodeIdQuestion]);
 	return { ...answers, ...(usage === "Run pre-existing node" ? { run: answers.nodeId } : { stop: answers.nodeId }) };
 };
+
+export default inquire;

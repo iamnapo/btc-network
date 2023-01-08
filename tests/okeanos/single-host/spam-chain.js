@@ -32,19 +32,9 @@ const ADDRESSES = [
 	"2MyvZyPuuxrDm3kbxGtUyiyLrfc8q8yfdGc",
 ];
 
-const mongooseOptions = {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useFindAndModify: false,
-	poolSize: 100,
-	keepAlive: true,
-	keepAliveInitialDelay: 300_000,
-	useUnifiedTopology: true,
-};
+mongoose.connect(process.env.DB_URI);
 
-mongoose.connect(process.env.DB_URI, mongooseOptions);
-
-(async () => {
+try {
 	for (let i = 0; i < 200; i += 1) {
 		const { txCreator } = await createTxs();
 		const blockCreator = chance.pickone(NODES);
@@ -60,6 +50,12 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		await Block.create({ height, nTx, minedAt, blockHash, millisToMine, minerNode: NODES.indexOf(blockCreator) + 1 });
 
 		// Hack to avoid soft-forks
-		await new Promise((r) => setTimeout(r, 1000 * 4));
+		await new Promise((r) => { setTimeout(r, 1000 * 4); });
 	}
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.log(error) || process.exit(1));
+
+	console.log("Done!\n");
+	process.exit(0);
+} catch (error) {
+	console.log(error);
+	process.exit(1);
+}

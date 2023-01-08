@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-top-level-await */
 import chalk from "chalk";
 import gradient from "gradient-string";
 

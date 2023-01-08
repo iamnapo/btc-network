@@ -9,19 +9,9 @@ import mongoose from "mongoose";
 
 import Block from "./models/block.js";
 
-const mongooseOptions = {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useFindAndModify: false,
-	poolSize: 100,
-	keepAlive: true,
-	keepAliveInitialDelay: 300_000,
-	useUnifiedTopology: true,
-};
+mongoose.connect(process.env.DB_URI);
 
-mongoose.connect(process.env.DB_URI, mongooseOptions);
-
-(async () => {
+try {
 	const logFile = readFileSync(path.join(path.dirname(fileURLToPath(import.meta.url)), "./logs.txt"), "utf8").split("\n");
 	const blocks = await Block.find().exec();
 	// const blocks = await Block.deleteMany({
@@ -43,6 +33,7 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 			console.log(line);
 		}
 	}
+
 	let count = 0;
 	await Promise.all(blocks.map((e) => {
 		if (e.arrivedAfterMillis.filter((el) => Number.isFinite(el)).length !== 4) count += 1;
@@ -50,4 +41,8 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		return e.save();
 	}));
 	console.log(count);
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.error(error));
+	console.log("Done!\n");
+	process.exit(0);
+} catch (error) {
+	console.log(error);
+}

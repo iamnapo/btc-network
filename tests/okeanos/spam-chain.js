@@ -66,7 +66,7 @@ const mongooseOptions = {
 
 mongoose.connect(process.env.DB_URI, mongooseOptions);
 
-(async () => {
+try {
 	for (let i = 0; i < 200; i += 1) {
 		const { txCreator } = await createTxs();
 		const blockCreator = chance.pickone(NODES);
@@ -81,6 +81,11 @@ mongoose.connect(process.env.DB_URI, mongooseOptions);
 		await Block.create({ height, nTx, minedAt, blockHash, millisToMine, minerNode: NODES.indexOf(blockCreator) + 1 });
 
 		// Hack to avoid soft-forks
-		await new Promise((r) => setTimeout(r, 1000 * 4));
+		await new Promise((r) => { setTimeout(r, 1000 * 4); });
 	}
-})().then(() => { console.log("Done!\n"); process.exit(0); }).catch((error) => console.log(error));
+
+	console.log("Done!\n");
+	process.exit(0);
+} catch (error) {
+	console.log(error);
+}

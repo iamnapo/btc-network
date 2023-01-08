@@ -64,3 +64,4 @@ binaries
 nodes.md
 nodes.okeanos.json
 logs.*
+btc-network.cjs
