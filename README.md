@@ -3,9 +3,8 @@
 > Tiny module that creates a btc network using docker images
 
 [![dockerhub](https://img.shields.io/badge/-iamnapo/btc--network-1388c6?logo=docker&logoColor=white&style=for-the-badge&label=)](https://hub.docker.com/r/iamnapo/btc-network)
-[![build](https://img.shields.io/github/workflow/status/iamnapo/btc-network/ci?style=for-the-badge&logo=github&label=)](https://github.com/iamnapo/btc-network/actions)
-[![npm](https://img.shields.io/npm/v/@iamnapo/btc-network.svg?style=for-the-badge&logo=npm&label=)](https://www.npmjs.com/package/@iamnapo/btc-network)
-[![license](https://img.shields.io/github/license/iamnapo/btc-network.svg?style=for-the-badge)](./LICENSE)
+[![build](https://img.shields.io/github/actions/workflow/status/iamnapo/btc-network/ci.yml?branch=master&style=for-the-badge&logo=github&label=)](https://github.com/iamnapo/btc-network/actions)
+[![npm](https://badges.iamnapo.me/npm/@iamnapo/btc-network)](https://www.npmjs.com/package/@iamnapo/btc-network)
 
 ## Install
 
