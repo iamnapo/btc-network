@@ -50,7 +50,7 @@
 		"@iamnapo/sort": "^2.2.0",
 		"address": "^1.2.2",
 		"chalk": "^5.2.0",
-		"execa": "^6.1.0",
+		"execa": "^7.0.0",
 		"globby": "^13.1.3",
 		"gradient-string": "^2.0.2",
 		"inquirer": "^9.1.4",
@@ -64,16 +64,16 @@
 		"bitcoin-core": "^4.1.0",
 		"chance": "^1.1.9",
 		"dotenv": "^16.0.3",
-		"esbuild": "^0.16.15",
-		"eslint": "^8.31.0",
-		"eslint-config-iamnapo": "^28.0.0",
-		"mathjs": "^11.5.0",
+		"esbuild": "^0.17.8",
+		"eslint": "^8.34.0",
+		"eslint-config-iamnapo": "^28.2.0",
+		"mathjs": "^11.5.1",
 		"moment": "^2.29.4",
-		"mongoose": "^6.8.3",
+		"mongoose": "^6.9.1",
 		"pkg": "^5.8.0"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=18"
 	},
 	"publishConfig": {
 		"access": "public"
