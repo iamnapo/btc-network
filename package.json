@@ -24,7 +24,7 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "esbuild bin/btc-network.js --bundle --platform=node --outfile=btc-network.cjs --inject:./import-meta-url.js --define:import.meta.url=import_meta_url && pkg btc-network.cjs -t node20-linux-x64,node20-macos-x64,node20-win-x64 --out-path binaries --compress Brotli",
+		"build": "esbuild bin/btc-network.js --bundle --platform=node --outfile=btc-network.cjs --inject:./import-meta-url.js --define:import.meta.url=import_meta_url && pkg btc-network.cjs -t node18-linux-x64,node18-macos-x64,node18-win-x64 --out-path binaries --compress Brotli",
 		"start": "node ./bin/btc-network.js",
 		"test": "eslint . --ext .js --cache"
 	},
