@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
+      contents: write
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
@@ -16,7 +17,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           registry-url: "https://npm.pkg.github.com"
           scope: "@iamnapo"
 

@@ -26,12 +26,12 @@ const args = () => {
     $ btc-network -i nodes.json -o out_files
   `, {
 			flags: {
-				input: { alias: "i", type: "string" },
-				output: { alias: "o", type: "string", default: "compose_files" },
-				image: { alias: "e", type: "string", default: "iamnapo/btc-network:latest" },
-				run: { alias: "r", type: "string" },
-				stop: { alias: "s", type: "string" },
-				config: { alias: "c", type: "string" },
+				input: { shortFlag: "i", type: "string" },
+				output: { shortFlag: "o", type: "string", default: "compose_files" },
+				image: { shortFlag: "e", type: "string", default: "iamnapo/btc-network:latest" },
+				run: { shortFlag: "r", type: "string" },
+				stop: { shortFlag: "s", type: "string" },
+				config: { shortFlag: "c", type: "string" },
 			},
 			importMeta: { url: import.meta.url },
 		},

@@ -24,7 +24,7 @@
 		"lib"
 	],
 	"scripts": {
-		"build": "esbuild bin/btc-network.js --bundle --platform=node --outfile=btc-network.cjs --inject:./import-meta-url.js --define:import.meta.url=import_meta_url && pkg btc-network.cjs -t node18-linux-x64,node18-macos-x64,node18-win-x64 --out-path binaries --compress Brotli",
+		"build": "esbuild bin/btc-network.js --bundle --platform=node --outfile=btc-network.cjs --inject:./import-meta-url.js --define:import.meta.url=import_meta_url && pkg btc-network.cjs -t node20-linux-x64,node20-macos-x64,node20-win-x64 --out-path binaries --compress Brotli",
 		"start": "node ./bin/btc-network.js",
 		"test": "eslint . --ext .js --cache"
 	},
@@ -36,7 +36,8 @@
 				"error",
 				{
 					"ignore": [
-						"@iamnapo/sort"
+						"@iamnapo/sort",
+						"meow"
 					]
 				}
 			],
@@ -50,27 +51,27 @@
 		"@iamnapo/sort": "^2.2.0",
 		"address": "^1.2.2",
 		"chalk": "^5.2.0",
-		"execa": "^7.0.0",
-		"globby": "^13.1.3",
+		"execa": "^7.1.1",
+		"globby": "^13.1.4",
 		"gradient-string": "^2.0.2",
-		"inquirer": "^9.1.4",
+		"inquirer": "^9.2.7",
 		"js-yaml": "^4.1.0",
 		"make-dir": "^3.1.0",
-		"meow": "^11.0.0",
-		"ora": "^6.1.2",
+		"meow": "^12.0.1",
+		"ora": "^6.3.1",
 		"update-notifier": "^6.0.2"
 	},
 	"devDependencies": {
 		"bitcoin-core": "^4.1.0",
-		"chance": "^1.1.9",
-		"dotenv": "^16.0.3",
-		"esbuild": "^0.17.8",
-		"eslint": "^8.34.0",
-		"eslint-config-iamnapo": "^28.2.0",
-		"mathjs": "^11.5.1",
+		"chance": "^1.1.11",
+		"dotenv": "^16.1.3",
+		"esbuild": "^0.17.19",
+		"eslint": "^8.42.0",
+		"eslint-config-iamnapo": "^31.0.0",
+		"mathjs": "^11.8.0",
 		"moment": "^2.29.4",
-		"mongoose": "^6.9.1",
-		"pkg": "^5.8.0"
+		"mongoose": "^7.2.2",
+		"pkg": "^5.8.1"
 	},
 	"engines": {
 		"node": ">=18"
